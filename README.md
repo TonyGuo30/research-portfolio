@@ -21,6 +21,7 @@ npm run check
 - `dist/content.js`: project narratives, metadata, and publication records.
 - `scripts/page-shell.html`: site metadata, header, and introduction.
 - `scripts/templates.mjs`: project pages, conceptual diagrams, and shared sections.
+- `scripts/case-briefs.mjs`: concise contribution summaries, evidence highlights, and visible research qualifications. Keep these consistent with `dist/content.js`.
 - `scripts/build.mjs`: generates the complete homepage and six case-study HTML pages.
 - `dist/app.js`: optional menu interactions and compatibility with old hash links.
 - `dist/interactions.js`: topic filtering, figure viewer, reading progress, reveal motion, and copy-email behavior.
@@ -51,3 +52,5 @@ The portfolio is grounded in the supplied CV, papers, website, and repositories.
 ## Interaction design
 
 Use the homepage research map or topic filters to explore related projects. Paper figures open in an accessible dialog with zoom, fit-to-view, original-image links, and Escape dismissal. Case studies have individual static URLs and native chapter anchors; older `#work/` links redirect to their corresponding pages. Publication rows expand to show bibliographic details. Motion respects the device’s reduced-motion setting.
+
+Case studies start with a concise reading layer. Native disclosures expose methods, study details, results tables, and source notes; all source-backed narratives remain in the HTML. The optional “Show all details” control expands the full record. The figure viewer uses a neutral white and gray surface.

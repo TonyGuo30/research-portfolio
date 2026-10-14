@@ -47,10 +47,7 @@ export function refreshReading() {
       const section = document.getElementById(link.dataset.section);
       if (!section) continue;
       const top = section.getBoundingClientRect().top;
-      // Evidence and next question share a row on desktop; keep Evidence active
-      // unless the reader explicitly followed the Next question chapter link.
-      const parallelNext = link.dataset.section === 'case-next' && innerWidth > 760;
-      if (top <= threshold && (!parallelNext || location.hash === '#case-next')) active = link;
+      if (top <= threshold) active = link;
     }
     links.forEach(link => {
       if (link === active) link.setAttribute('aria-current', 'location');
@@ -159,6 +156,22 @@ export function initializeInteractions(projects) {
       status.textContent = 'Copy unavailable. Select the email address above to copy it.';
     }
   });
+  const detailToggle=document.querySelector('.details-toggle');
+  const caseDetails=[...document.querySelectorAll('.case-detail')];
+  if(detailToggle){
+    const syncDetails=()=>{
+      const allOpen=caseDetails.every(detail=>detail.open);
+      detailToggle.setAttribute('aria-expanded',String(allOpen));
+      detailToggle.innerHTML=allOpen ? 'Collapse details <span aria-hidden="true">−</span>' : 'Show all details <span aria-hidden="true">＋</span>';
+      refreshReading();
+    };
+    detailToggle.addEventListener('click',()=>{
+      const open=!caseDetails.every(detail=>detail.open);
+      caseDetails.forEach(detail=>{detail.open=open;});
+      syncDetails();
+    });
+    caseDetails.forEach(detail=>detail.addEventListener('toggle',syncDetails));
+  }
   initializeViewer();
   addEventListener('scroll', refreshReading, {passive:true});
   addEventListener('resize', refreshReading, {passive:true});

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { projects } from '../dist/content.js';
+import { briefs } from './case-briefs.mjs';
 
 // Verify the HTTP documents contain the research before any browser JS runs.
 const root = new URL('../dist/', import.meta.url);
@@ -13,6 +14,12 @@ for (const project of projects) {
   assert.ok(page.includes(project.contribution), `Missing contribution: ${project.id}`);
   assert.ok(page.includes(project.evidence), `Missing evidence: ${project.id}`);
   assert.ok(page.includes(project.source), `Missing source: ${project.id}`);
+  for (const text of [project.context, project.evaluation, project.evidenceDetail, ...project.methods.flat()].filter(Boolean)) {
+    assert.ok(page.includes(text), `Lost research detail: ${project.id}`);
+  }
+  const brief=briefs[project.id];
+  assert.ok(page.includes(`<p class="evidence-caveat">${brief.caveat}</p>`), `Missing visible qualification: ${project.id}`);
+  assert.ok(page.includes(brief.role) && page.includes(brief.takeaway), `Missing concise overview: ${project.id}`);
   assert.ok(page.includes('<base href="../../">'), `Broken asset base: ${project.id}`);
   for (const section of ['question', 'contribution', 'evidence', 'next']) {
     assert.ok(page.includes(`id="case-${section}"`), `Missing section: ${project.id}/${section}`);

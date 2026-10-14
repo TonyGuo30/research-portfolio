@@ -1,5 +1,5 @@
-import { projects } from './content.js?v=20261014-static';
-import { initializeInteractions } from './interactions.js?v=20261014-static';
+import { projects } from './content.js?v=20261014-reading';
+import { initializeInteractions } from './interactions.js?v=20261014-reading';
 
 // Preserve previously shared hash routes. Project content itself is now HTML.
 const legacy=location.hash.match(/^#work\/([^/]+)(?:\/(question|contribution|evidence|next))?$/);
