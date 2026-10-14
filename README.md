@@ -20,6 +20,7 @@ npm run check
 
 - `dist/content.js`: project narratives, metadata, and publication records.
 - `dist/app.js`: page composition, conceptual diagrams, and navigation.
+- `dist/interactions.js`: topic filtering, figure viewer, reading progress, reveal motion, and copy-email behavior.
 - `dist/index.html`: site metadata, header, and introduction.
 - `dist/styles.css`: responsive screen layout.
 - `dist/assets/Tony_Guo_Resume.pdf`: the supplied CV, unchanged.
@@ -43,3 +44,7 @@ Do not double-click the HTML file: ES module loading needs an HTTP server. Use `
 ## Content review
 
 The portfolio is grounded in the supplied CV, papers, website, and repositories. Parallax, VirT-Lab, From Prediction to Execution, and EnactiveCanvas use original paper figures. Hidden-in-Plain-Text and ConsentDiff use labeled conceptual diagrams. Research questions are prospective directions, distinct from reported findings.
+
+## Interaction design
+
+Use the homepage research map or topic filters to explore related projects. Paper figures open in an accessible dialog with zoom, fit-to-view, original-image links, and Escape dismissal. Case-study chapters have shareable hash links. Publication rows expand to show bibliographic details. Motion respects the device’s reduced-motion setting.

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f5f0">
+  <meta name="theme-color" content="#f5f3eb">
   <meta name="description" content="Tony (Haoze) Guo's research portfolio: human–AI interaction, grounded AI agents, multi-agent systems, and trustworthy NLP.">
   <title>Tony (Haoze) Guo — Research Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23626c45'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-size='23' fill='%23f6f5f0'%3ET%3C/text%3E%3C/svg%3E">
@@ -13,20 +13,29 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
-    <a class="brand" href="#" aria-label="Tony Guo portfolio home"><span>TG</span><span class="slash">/</span>Tony (Haoze) Guo</a>
+    <a class="brand" href="#" aria-label="Tony Guo portfolio home"><span>TG</span><span class="brand-name">Tony Guo</span></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">+</span></button>
     <nav id="navigation" aria-label="Main navigation">
-      <a href="#selected-work">Selected work</a><a href="#research-lens">Research lens</a><a href="#background">Background</a>
+      <a href="#selected-work">Work</a><a href="#research-lens">Research lens</a><a href="#writing">Writing</a><a href="#background">About</a>
       <a class="button button-outline cv" href="assets/Tony_Guo_Resume.pdf" download>Download CV <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
   <main id="main" tabindex="-1">
     <div id="home" class="wrap">
       <section class="hero" aria-labelledby="hero-title">
-        <div><h1 id="hero-title">Making AI a better<br><em>research partner.</em></h1><p class="hero-copy">I build and study interactive AI systems that help people maintain context, inspect evidence, and stay in control.</p><a class="button" href="#selected-work">Explore selected work <span aria-hidden="true">↓</span></a></div>
-        <aside class="hero-bio"><h2>Tony (Haoze) Guo</h2><p>Computer Engineering &amp; Computer Science<br>University of Wisconsin–Madison</p><p class="bio-topics">HCI · Human–AI Interaction · AI Agents<br>Multi-Agent Systems · NLP</p></aside>
+        <div class="hero-intro"><h1 id="hero-title">Making AI a better<br><em>research partner.</em></h1><p class="hero-copy">I build and study interactive AI systems that help people maintain context, inspect evidence, and stay in control.</p><a class="button hero-cta" href="#selected-work">Explore selected work <span aria-hidden="true">↗</span></a><p class="hero-disciplines">HCI <span>/</span> Human–AI Interaction <span>/</span> AI Agents <span>/</span> NLP</p></div>
+        <aside class="hero-bio">
+          <div class="research-map" aria-label="Explore work by research theme">
+            <svg class="map-lines" viewBox="0 0 400 360" fill="none" aria-hidden="true"><circle cx="200" cy="190" r="142"/><path d="M200 54V190L77 260M200 190l123 70" stroke-dasharray="3 6"/><circle class="map-orbit" cx="200" cy="190" r="142" pathLength="100"/></svg>
+            <span class="map-center">Explore<br>the research<span class="map-dot"></span></span>
+            <button class="map-node map-human" data-theme="human" aria-label="Explore human–AI interaction projects"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="10" r="5"/><path d="M6 28v-3a10 10 0 0 1 20 0v3"/></svg><span>Human</span></button>
+            <button class="map-node map-ai" data-theme="agents" aria-label="Explore agent and systems projects"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2c1 9 5 13 14 14-9 1-13 5-14 14C15 21 11 17 2 16 11 15 15 11 16 2Z"/></svg><span>AI</span></button>
+            <button class="map-node map-context" data-theme="trust" aria-label="Explore evaluation and trust projects"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="8" width="18" height="22" rx="2"/><path d="M12 8V3h13l4 4v18M12 14h8m-8 5h8m-8 5h5"/></svg><span>Context</span></button>
+          </div>
+          <div class="bio-text"><h2>Tony (Haoze) Guo</h2><p>University of Wisconsin–Madison<br>Computer Engineering &amp; Computer Science</p></div>
+        </aside>
       </section>
-      <section id="selected-work" aria-labelledby="work-title"><div class="section-line"><h2 id="work-title">01 — Selected work</h2><span>Systems, studies &amp; open questions</span></div><div id="project-list"></div></section>
+      <section id="selected-work" aria-labelledby="work-title"><div class="work-heading"><span class="section-number">01</span><div><h2 id="work-title">Selected work</h2><p>Six projects. Connected questions.</p></div></div><div class="work-toolbar"><div class="filter-list" role="group" aria-label="Filter selected work"><button data-filter="all" aria-pressed="true">All work</button><button data-filter="human" aria-pressed="false">Human–AI interaction</button><button data-filter="agents" aria-pressed="false">Agents &amp; systems</button><button data-filter="trust" aria-pressed="false">Evaluation &amp; trust</button></div><p class="result-count" role="status" aria-live="polite">6 projects</p></div><div id="project-list"></div></section>
       <div id="home-continuation"></div>
     </div>
     <div id="case-view" class="wrap" hidden></div>
