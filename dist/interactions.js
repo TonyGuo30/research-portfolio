@@ -23,6 +23,7 @@ export function setProjectFilter(filter) {
   });
   document.querySelector('.result-count').textContent = `${visible} project${visible === 1 ? '' : 's'}`;
   revealSections();
+  refreshReading();
 }
 
 export function revealSections() {
@@ -62,7 +63,7 @@ function initializeViewer() {
   const dialog = document.createElement('dialog');
   dialog.className = 'figure-dialog';
   dialog.setAttribute('aria-labelledby', 'viewer-title');
-  dialog.innerHTML = `<div class="viewer-header"><h2 id="viewer-title"></h2><div class="viewer-tools"><button class="viewer-zoom" type="button" aria-pressed="false">Zoom in</button><a class="viewer-original" target="_blank" rel="noopener noreferrer">Open original ↗</a><button class="viewer-close" type="button" aria-label="Close figure" autofocus>×</button></div></div><div class="viewer-stage" tabindex="0" aria-label="Figure viewing area"><img alt=""></div><p class="viewer-caption"></p>`;
+  dialog.innerHTML = `<div class="viewer-header"><h2 id="viewer-title"></h2><div class="viewer-tools"><button class="viewer-zoom" type="button" aria-pressed="false">Zoom in</button><a class="viewer-original" target="_blank" rel="noopener noreferrer">Open original ↗</a><button class="viewer-close" type="button" aria-label="Close figure" autofocus>×</button></div></div><p class="viewer-hint" id="viewer-hint">Zoom in to inspect the figure.</p><div class="viewer-stage" tabindex="0" aria-label="Figure viewing area" aria-describedby="viewer-hint"><img alt="" draggable="false"></div><p class="viewer-caption"></p>`;
   document.body.append(dialog);
   const stage = dialog.querySelector('.viewer-stage');
   const img = stage.querySelector('img');
@@ -73,6 +74,7 @@ function initializeViewer() {
     img.style.setProperty('--zoom-width', `${Math.max(img.naturalWidth, stage.clientWidth * 1.7)}px`);
     zoom.setAttribute('aria-pressed', String(expanded));
     zoom.textContent = expanded ? 'Fit to view' : 'Zoom in';
+    dialog.querySelector('.viewer-hint').textContent = expanded ? 'Scroll or drag to explore. Use Fit to view to see the whole figure.' : 'Zoom in to inspect the figure.';
     stage.scrollTo(0, 0);
   }
   document.addEventListener('click', event => {
@@ -91,9 +93,25 @@ function initializeViewer() {
     dialog.showModal();
   });
   zoom.addEventListener('click', () => setZoom(!stage.classList.contains('is-zoomed')));
-  img.addEventListener('click', () => {
-    if (stage.classList.contains('is-zoomed')) setZoom(false);
+  // Touch uses native scrolling; mouse dragging pans without unexpectedly
+  // toggling the zoom when a reader tries to inspect a detail.
+  let drag;
+  stage.addEventListener('pointerdown', event => {
+    if(event.pointerType !== 'mouse' || event.button !== 0 || !stage.classList.contains('is-zoomed')) return;
+    drag={x:event.clientX,y:event.clientY,left:stage.scrollLeft,top:stage.scrollTop};
+    stage.setPointerCapture(event.pointerId);
+    stage.classList.add('is-dragging');
+    event.preventDefault();
   });
+  stage.addEventListener('pointermove', event => {
+    if(!drag) return;
+    stage.scrollLeft=drag.left+drag.x-event.clientX;
+    stage.scrollTop=drag.top+drag.y-event.clientY;
+  });
+  const endDrag=()=>{drag=null;stage.classList.remove('is-dragging');};
+  stage.addEventListener('pointerup',endDrag);
+  stage.addEventListener('pointercancel',endDrag);
+  stage.addEventListener('lostpointercapture',endDrag);
   dialog.querySelector('.viewer-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;

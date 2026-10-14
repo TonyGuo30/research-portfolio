@@ -1,5 +1,5 @@
 import { projects, publications } from './content.js';
-import { initializeInteractions, setProjectFilter, refreshReading, revealSections } from './interactions.js';
+import { initializeInteractions, setProjectFilter, refreshReading, revealSections } from './interactions.js?v=20261014';
 
 const arrow = '<svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg>';
 const external = (url, label, cls='text-link') => `<a class="${cls}" href="${url}" target="_blank" rel="noopener noreferrer">${label} ${arrow}</a>`;
@@ -55,20 +55,22 @@ document.querySelector('#home-continuation').innerHTML=`
   <section id="background" class="background-section" aria-labelledby="background-title"><div class="section-line"><p class="eyebrow">04 — Background</p><span>Research through building</span></div><div class="background-heading"><h2 id="background-title">An engineering foundation.<br>A human-centered direction.</h2><div><h3>University of Wisconsin–Madison</h3><p>B.S. Computer Engineering & Computer Science</p><p>Expected May 2027 · Honors in Computer Science</p></div></div><div class="experience-list"><article><h3>Yifang’s Lab</h3><p>Task context and grounding in human–AI collaboration</p><span>2026</span></article><article><h3>People and Robots Laboratory</h3><p>Comparing and reproducing LLM behavior across versions</p><span>From 2025</span></article><article><h3>RINGZ Lab · Notre Dame</h3><p>Backend systems for multi-agent team simulations</p><span>Summer 2025</span></article><article><h3>Oshkosh × UW–Madison</h3><p>AI-ready data, source lineage, and retrieval pipelines</p><span>From Sep 2026</span></article></div></section>
   <section class="code-section" aria-labelledby="code-title"><div><p class="eyebrow">Supporting engineering work</p><h2 id="code-title">From ideas to working systems.</h2><p>A few public repositories alongside the research.</p>${external('https://github.com/TonyGuo30','Explore GitHub')}</div><div class="repo-list">${[['agent-arcade','Agent Arcade','TypeScript · Interactive agent environment'],['NutriPath','NutriPath','Java · Nutrition learning & meal planning'],['Pokemon-Fusion-Art-Generator','Pokémon Fusion Art Generator','Python · CS 566 course project']].map(([slug,title,desc])=>`<a href="https://github.com/TonyGuo30/${slug}" target="_blank" rel="noopener noreferrer"><span><strong>${title}</strong><small>${desc}</small></span>${arrow}</a>`).join('')}</div></section>`;
 
-document.querySelector('#footer').innerHTML=`<div class="wrap footer-main"><h2>Let’s talk about<br>human–AI collaboration.</h2><div><a class="email-link" href="mailto:tonyguo0607@gmail.com">tonyguo0607@gmail.com ${arrow}</a><div class="footer-links">${external('https://github.com/TonyGuo30','GitHub','')}${external('https://tonyguo30.github.io/TonyGuo.github.io/','Personal website','')}</div><button class="copy-email" type="button">Copy email</button><p class="copy-status" role="status" aria-live="polite"></p></div></div><div class="wrap footer-bottom"><span>© 2026 Tony (Haoze) Guo</span><span>Research portfolio · October 2026</span><a href="#">Back to top ↑</a></div>`;
+document.querySelector('#footer').innerHTML=`<div class="wrap footer-main"><h2>Let’s talk about<br>human–AI collaboration.</h2><div><a class="email-link" href="mailto:tonyguo0607@gmail.com">tonyguo0607@gmail.com ${arrow}</a><div class="footer-links">${external('https://github.com/TonyGuo30','GitHub','')}${external('https://tonyguo30.github.io/TonyGuo.github.io/','Personal website','')}</div><button class="copy-email" type="button">Copy email</button><p class="copy-status" role="status" aria-live="polite"></p></div></div><div class="wrap footer-bottom"><span>© 2026 Tony (Haoze) Guo</span><span>Research portfolio · October 2026</span><a class="back-to-top" href="#">Back to top ↑</a></div>`;
 
 const menuButton=document.querySelector('.menu-toggle');
 function closeMenu(){menuButton.setAttribute('aria-expanded','false');document.querySelector('#navigation').classList.remove('is-open');}
 menuButton.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(open));document.querySelector('#navigation').classList.toggle('is-open',open);});
 document.querySelector('#navigation').addEventListener('click',e=>{if(e.target.closest('a')) closeMenu();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape' && menuButton.getAttribute('aria-expanded')==='true'){closeMenu();menuButton.focus();}});
 let activeProject = null;
 function route(){
+  closeMenu();
   let hash;
   try{hash=decodeURIComponent(location.hash.slice(1));}catch{hash='';}
   const [,requested,section]=hash.startsWith('work/')?hash.split('/'):[];
   const project=projects.find(p=>p.id===requested);
   const home=document.querySelector('#home'),view=document.querySelector('#case-view');
+  document.querySelector('.back-to-top').href=project ? `#work/${project.id}` : '#';
   if(project){
     home.hidden=true;view.hidden=false;
     if(activeProject!==project.id){view.innerHTML=caseStudy(project);activeProject=project.id;}
@@ -89,6 +91,26 @@ function route(){
   revealSections();
   document.querySelectorAll('#navigation>a').forEach(a=>{if((project&&a.hash==='#selected-work')||a.hash===location.hash)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
 }
+// A repeated hash does not emit hashchange. Explicitly handle it so a chapter
+// link still works after the reader has scrolled away from that chapter.
+document.addEventListener('click', event => {
+  const link=event.target.closest('a[href^="#"]');
+  if(!link || event.defaultPrevented || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if(link.classList.contains('skip-link')){
+    event.preventDefault();
+    closeMenu();
+    document.querySelector('#main').focus({preventScroll:true});
+    window.scrollTo({top:0,behavior:'instant'});
+    return;
+  }
+  if(link.hash===location.hash || (link.getAttribute('href')==='#' && !location.hash)){
+    event.preventDefault();
+    route();
+  }
+});
+document.addEventListener('click', event => {
+  if(!event.target.closest('.site-header')) closeMenu();
+});
 initializeInteractions(projects);
 window.addEventListener('hashchange',route);
 route();
