@@ -1,5 +1,6 @@
-import { projects } from './content.js?v=20261014-reading';
-import { initializeInteractions } from './interactions.js?v=20261014-reading';
+import { initializeSystemDiagrams } from './system-diagrams.js?v=20261014-diagrams';
+import { projects } from './content.js?v=20261014-diagrams';
+import { initializeInteractions } from './interactions.js?v=20261014-diagrams';
 
 // Preserve previously shared hash routes. Project content itself is now HTML.
 const legacy=location.hash.match(/^#work\/([^/]+)(?:\/(question|contribution|evidence|next))?$/);
@@ -28,4 +29,5 @@ document.addEventListener('keydown',event=>{
 });
 addEventListener('hashchange',closeMenu);
 initializeInteractions(projects);
+initializeSystemDiagrams();
 document.documentElement.classList.add('js-ready');

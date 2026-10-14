@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
-    "check": "node --check dist/app.js && node --check dist/content.js && node --check dist/interactions.js && node --check scripts/templates.mjs && node --check scripts/build.mjs && node scripts/check-pages.mjs",
+    "check": "node --check dist/app.js && node --check dist/content.js && node --check dist/interactions.js && node --check scripts/templates.mjs && node --check scripts/build.mjs && node scripts/check-pages.mjs && node --check dist/system-diagrams.js && node scripts/check-diagrams.mjs",
     "build": "node scripts/build.mjs",
     "predev": "npm run build",
     "prestart": "npm run build"

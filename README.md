@@ -25,6 +25,8 @@ npm run check
 - `scripts/build.mjs`: generates the complete homepage and six case-study HTML pages.
 - `dist/app.js`: optional menu interactions and compatibility with old hash links.
 - `dist/interactions.js`: topic filtering, figure viewer, reading progress, reveal motion, and copy-email behavior.
+- `dist/system-diagrams.js`: six deterministic interactive system sketches, shared by the static build and browser.
+- `scripts/check-diagrams.mjs`: branch, reset, and calculation checks for the sketches.
 - `dist/index.html` and `dist/work/*/index.html`: generated output; edit the templates and run `npm run build`.
 - `dist/styles.css`: responsive screen layout.
 - `dist/assets/Tony_Guo_Resume.pdf`: the supplied CV, unchanged.
@@ -54,3 +56,5 @@ The portfolio is grounded in the supplied CV, papers, website, and repositories.
 Use the homepage research map or topic filters to explore related projects. Paper figures open in an accessible dialog with zoom, fit-to-view, original-image links, and Escape dismissal. Case studies have individual static URLs and native chapter anchors; older `#work/` links redirect to their corresponding pages. Publication rows expand to show bibliographic details. Motion respects the device’s reduced-motion setting.
 
 Case studies start with a concise reading layer. Native disclosures expose methods, study details, results tables, and source notes; all source-backed narratives remain in the HTML. The optional “Show all details” control expands the full record. The figure viewer uses a neutral white and gray surface.
+
+Each case study has a System chapter with a project-specific interactive sketch. These are explicitly illustrative: no LLM is called, no real user data is collected, and no demonstration values are empirical study results. Fitts’ law uses named illustrative constants; agent paths and consent snapshots are scripted examples. A static diagram is rendered during the build so the explanation survives script failures. The original paper figure is available in a native disclosure below the sketch.
