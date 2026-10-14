@@ -50,7 +50,7 @@ export function refreshReading() {
       // Evidence and next question share a row on desktop; keep Evidence active
       // unless the reader explicitly followed the Next question chapter link.
       const parallelNext = link.dataset.section === 'case-next' && innerWidth > 760;
-      if (top <= threshold && (!parallelNext || location.hash.endsWith('/next'))) active = link;
+      if (top <= threshold && (!parallelNext || location.hash === '#case-next')) active = link;
     }
     links.forEach(link => {
       if (link === active) link.setAttribute('aria-current', 'location');

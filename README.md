@@ -19,9 +19,12 @@ npm run check
 ## Edit
 
 - `dist/content.js`: project narratives, metadata, and publication records.
-- `dist/app.js`: page composition, conceptual diagrams, and navigation.
+- `scripts/page-shell.html`: site metadata, header, and introduction.
+- `scripts/templates.mjs`: project pages, conceptual diagrams, and shared sections.
+- `scripts/build.mjs`: generates the complete homepage and six case-study HTML pages.
+- `dist/app.js`: optional menu interactions and compatibility with old hash links.
 - `dist/interactions.js`: topic filtering, figure viewer, reading progress, reveal motion, and copy-email behavior.
-- `dist/index.html`: site metadata, header, and introduction.
+- `dist/index.html` and `dist/work/*/index.html`: generated output; edit the templates and run `npm run build`.
 - `dist/styles.css`: responsive screen layout.
 - `dist/assets/Tony_Guo_Resume.pdf`: the supplied CV, unchanged.
 
@@ -35,11 +38,11 @@ Live site: https://TonyGuo30.github.io/research-portfolio/
 
 Repository: https://github.com/TonyGuo30/research-portfolio
 
-Push changes to `main` to publish automatically. The GitHub Actions workflow in `.github/workflows/pages.yml` checks the JavaScript and deploys only `dist/` to GitHub Pages. Deployment progress appears in the repository’s Actions tab. GitHub Pages uses GitHub Actions as its publishing source.
+Push changes to `main` to publish automatically. The GitHub Actions workflow in `.github/workflows/pages.yml` builds the pages, checks JavaScript and complete project content, and deploys only `dist/` to GitHub Pages. Deployment progress appears in the repository’s Actions tab. GitHub Pages uses GitHub Actions as its publishing source.
 
-`dist/` is a complete static site. All asset paths are relative so a repository subpath works. No API keys, backend, build step, analytics, or third-party scripts are required.
+`dist/` is a complete static site. All asset paths are relative so a repository subpath works. The dependency-free build runs in Node.js. No API keys, backend, analytics, or third-party scripts are required. All research content, project links, chapter anchors, and publication disclosures work without JavaScript; filtering and the figure viewer are optional enhancements.
 
-Do not double-click the HTML file: ES module loading needs an HTTP server. Use `npm run dev` or a static host.
+Use `npm run dev` or a static host to enable the optional ES-module interactions. Static project content remains readable even if those scripts cannot load.
 
 ## Content review
 
@@ -47,4 +50,4 @@ The portfolio is grounded in the supplied CV, papers, website, and repositories.
 
 ## Interaction design
 
-Use the homepage research map or topic filters to explore related projects. Paper figures open in an accessible dialog with zoom, fit-to-view, original-image links, and Escape dismissal. Case-study chapters have shareable hash links. Publication rows expand to show bibliographic details. Motion respects the device’s reduced-motion setting.
+Use the homepage research map or topic filters to explore related projects. Paper figures open in an accessible dialog with zoom, fit-to-view, original-image links, and Escape dismissal. Case studies have individual static URLs and native chapter anchors; older `#work/` links redirect to their corresponding pages. Publication rows expand to show bibliographic details. Motion respects the device’s reduced-motion setting.

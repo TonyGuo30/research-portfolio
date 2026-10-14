@@ -25,7 +25,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Check JavaScript
+      - name: Build static project pages
+        run: npm run build
+      - name: Check JavaScript and complete page content
         run: npm run check
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

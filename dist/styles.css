@@ -48,3 +48,9 @@
   .viewer-stage{height:auto}
   .viewer-caption{max-height:65px;overflow:auto;white-space:normal}
 }
+/* Core navigation and research stay available if enhancements cannot load. */
+html:not(.js-ready) .filter-list,html:not(.js-ready) .result-count,html:not(.js-ready) .copy-email,html:not(.js-ready) .research-map,html:not(.js-ready) .menu-toggle{display:none}
+@media(max-width:760px){
+  html:not(.js-ready) .site-header{position:relative}
+  html:not(.js-ready) .site-header nav{display:flex;position:static;width:100%;max-height:none;box-shadow:none;padding:10px 0 20px}
+}
