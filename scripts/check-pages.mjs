@@ -29,3 +29,22 @@ for (const project of projects) {
 }
 assert.ok(!home.includes('{{'), 'Unrendered home template');
 console.log(`Verified all ${projects.length} projects and complete case studies are present without JavaScript.`);
+
+// Guard figure bounds and static evidence fallbacks, including the GitHub Pages base.
+for (const project of projects) {
+  const page=await readFile(new URL(`work/${project.id}/index.html`,root),'utf8');
+  if(project.image){
+    assert.ok(page.includes(`url(work/${project.id}/#figure-crop)`));
+    const bounds=[...page.matchAll(/data-figure-view="([\d ]+)"/g)].map(match=>match[1].split(' ').map(Number));
+    assert.equal(bounds.length,4);
+    for(const [x,y,w,h] of bounds){
+      assert.ok(w>0 && h>0 && x>=0 && y>=0);
+      assert.ok(x+w<=project.image.width+1 && y+h<=project.image.height+1, `Out-of-bounds crop: ${project.id}`);
+    }
+  }
+  assert.ok(!/class="chart-panel"[^>]* hidden/.test(page),'Charts must survive without JavaScript');
+  if(project.results){
+    for(const row of project.results.rows) for(const value of row.slice(1,3)) assert.ok(page.includes(`<strong>${value}</strong>`));
+  }
+}
+console.log('Verified original-figure crop bounds, deployment-safe clip paths, and chart values.');

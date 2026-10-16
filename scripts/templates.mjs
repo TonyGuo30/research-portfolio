@@ -1,5 +1,6 @@
 import { projects, publications } from '../dist/content.js';
 import { briefs } from './case-briefs.mjs';
+import { artifactViewer, evidenceVisual } from './case-visuals.mjs';
 
 const arrow = '<svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg>';
 const external = (url, label, cls='text-link') => `<a class="${cls}" href="${url}" target="_blank" rel="noopener noreferrer">${label} ${arrow}</a>`;
@@ -35,17 +36,18 @@ function projectRow(p) {
 export function caseStudy(p) {
   const next=projects[(projects.indexOf(p)+1)%projects.length];
   const brief=briefs[p.id];
-  return `<article class="case-study case-compact" data-project="${p.id}">
+  return `<article class="case-study case-compact case-editorial" data-project="${p.id}">
     <a class="back-link" href="#project-${p.id}"><span aria-hidden="true">←</span> All work</a>
     <div class="case-heading"><div><p class="eyebrow">${p.number} / ${p.category}</p><h1 tabindex="-1">${p.title}</h1><p class="case-subtitle">${p.subtitle}</p></div>${projectMetadata(p)}</div>
     <nav class="case-toc" aria-label="On this page">${[['question','Overview'],['contribution','Contribution'],['evidence','Evidence'],['next','Next question']].map(([id,label])=>`<a href="work/${p.id}/#case-${id}" data-section="case-${id}">${label}</a>`).join('')}<button type="button" class="details-toggle" aria-expanded="false">Show all details <span aria-hidden="true">＋</span></button></nav>
+${artifactViewer(p)}
     <section class="case-overview" id="case-question"><p class="eyebrow">01 / The question</p><h2>${p.question}</h2><details class="case-detail background-detail"><summary>Why this matters</summary><p>${p.context}</p></details></section>
-${p.image?`<details class="case-detail original-figure"><summary>View the original paper figure</summary><figure class="case-figure">${projectVisual(p,true)}<figcaption class="diagram-caption">${p.caption}</figcaption></figure></details>`:''}
+
     <section class="case-chapter" id="case-contribution"><div class="chapter-heading"><p class="eyebrow">02 / Contribution & method</p><h2>${p.id==='hidden-in-plain-text'?'A joint contribution':'My contribution'}</h2></div><p class="chapter-lead">${brief.role}</p><details class="case-detail role-detail"><summary>Role & scope</summary><p>${p.contribution}</p></details><div class="method-explorer" aria-label="Explore the approach">${p.methods.map(([title,description],i)=>`<details class="case-detail method-step"><summary><span class="step-number">0${i+1}</span><span class="step-title">${brief.steps[i]}</span><span class="step-action" aria-hidden="true">＋</span></summary><div class="step-body"><h3>${title}</h3><p>${description}</p></div></details>`).join('')}</div></section>
-    <section class="case-chapter" id="case-evidence"><div class="chapter-heading"><p class="eyebrow">03 / Evidence</p><h2>What the work shows</h2></div><dl class="evidence-facts">${brief.facts.map(([value,label])=>`<div><dt>${label}</dt><dd>${value}</dd></div>`).join('')}</dl><p class="chapter-lead">${brief.takeaway}</p><p class="evidence-caveat">${brief.caveat}</p><details class="case-detail study-detail"><summary>${p.results?'Explore the results & comparison table':'Explore the study & findings'}</summary><div class="detail-body"><p>${p.evidence}</p>${p.evidenceDetail?`<p>${p.evidenceDetail}</p>`:''}${resultTable(p)}</div></details><div class="evidence-links">${p.links.map(l=>external(l.url,l.label)).join('')}</div></section>
+    <section class="case-chapter" id="case-evidence"><div class="chapter-heading"><p class="eyebrow">03 / Evidence</p><h2>What the work shows</h2></div><dl class="evidence-facts${!p.image?' facts-verbal':''}">${brief.facts.map(([value,label])=>`<div><dt>${label}</dt><dd>${value}</dd></div>`).join('')}</dl><p class="chapter-lead">${brief.takeaway}</p><p class="evidence-caveat">${brief.caveat}</p>${evidenceVisual(p)}<details class="case-detail study-detail"><summary>${p.results?'Explore the results & comparison table':'Explore the study & findings'}</summary><div class="detail-body"><p>${p.evidence}</p>${p.evidenceDetail?`<p>${p.evidenceDetail}</p>`:''}${resultTable(p)}</div></details><div class="evidence-links">${p.links.map(l=>external(l.url,l.label)).join('')}</div></section>
     <section class="case-next-question" id="case-next"><p class="eyebrow">04 / The next question</p><h2>${p.questionNext}</h2><details class="case-detail"><summary>A direction to explore</summary><p>${p.evaluation}</p></details></section>
     <details class="case-detail source-detail"><summary>Sources & attribution</summary><p class="source-note">${p.source}</p></details>
-    <nav class="case-navigation" aria-label="Case study navigation"><a class="text-link" href="#project-${p.id}">← Back to selected work</a><a class="text-link" href="work/${next.id}/">Next: ${next.title} →</a></nav>
+    <nav class="case-navigation" aria-label="Case study navigation"><a class="text-link" href="#project-${p.id}">← Back to selected work</a><a class="next-project-link" href="work/${next.id}/"><span class="eyebrow">Next research story</span><strong>${next.title}</strong><span class="next-project-subtitle">${next.subtitle}</span><span class="next-project-arrow" aria-hidden="true">↗</span></a></nav>
   </article>`;
 }
 
