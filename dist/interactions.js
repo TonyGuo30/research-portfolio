@@ -22,6 +22,7 @@ export function setProjectFilter(filter) {
     button.setAttribute('aria-pressed', String(button.dataset.filter === filter));
   });
   document.querySelector('.result-count').textContent = `${visible} project${visible === 1 ? '' : 's'}`;
+  document.dispatchEvent(new CustomEvent('portfolio:filter', {detail:{filter,ids:[...document.querySelectorAll('.project-row:not([hidden])')].map(row=>row.id.slice(8))}}));
   revealSections();
   refreshReading();
 }

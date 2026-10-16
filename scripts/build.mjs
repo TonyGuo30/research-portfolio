@@ -1,4 +1,5 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { folio, workIndex } from './folio.mjs';
 import { projects } from '../dist/content.js';
 import { projectList, homeContinuation, footer, caseStudy } from './templates.mjs';
 
@@ -6,6 +7,7 @@ const root = new URL('../dist/', import.meta.url);
 const shell = await readFile(new URL('./page-shell.html', import.meta.url), 'utf8');
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
 const home = shell.replace('  {{BASE}}\n', '').replace('{{PROJECTS}}', projectList)
+  .replace('{{FOLIO}}', folio).replace('{{WORK_INDEX}}', workIndex)
   .replace('{{CONTINUATION}}', homeContinuation).replace('{{FOOTER}}', footer);
 await writeFile(new URL('index.html', root), home);
 

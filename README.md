@@ -24,6 +24,8 @@ npm run check
 - `scripts/case-briefs.mjs`: concise contribution summaries, evidence highlights, and visible research qualifications. Keep these consistent with `dist/content.js`.
 - `scripts/build.mjs`: generates the complete homepage and six case-study HTML pages.
 - `dist/app.js`: optional menu interactions and compatibility with old hash links.
+- `dist/archive.js`: local research search, keyboard navigation, folio selection, and Gallery / Index browsing.
+- `scripts/folio.mjs`: static markup for manuscript previews and the research index.
 - `dist/interactions.js`: topic filtering, figure viewer, reading progress, reveal motion, and copy-email behavior.
 - `dist/index.html` and `dist/work/*/index.html`: generated output; edit the templates and run `npm run build`.
 - `dist/styles.css`: responsive screen layout.
@@ -54,3 +56,5 @@ The portfolio is grounded in the supplied CV, papers, website, and repositories.
 Use the homepage research map or topic filters to explore related projects. Paper figures open in an accessible dialog with zoom, fit-to-view, original-image links, and Escape dismissal. Case studies have individual static URLs and native chapter anchors; older `#work/` links redirect to their corresponding pages. Publication rows expand to show bibliographic details. Motion respects the device’s reduced-motion setting.
 
 Case studies start with a concise reading layer. Native disclosures expose methods, study details, results tables, and source notes; all source-backed narratives remain in the HTML. The optional “Show all details” control expands the full record. The figure viewer uses a neutral white and gray surface.
+
+The homepage folio previews four original manuscript figures without automatic playback. Gallery remains the default and works without JavaScript; Index offers a compact six-project list with synchronized topic filters and inline previews on mobile. Find work (Cmd/Ctrl+K) searches project titles, topics, research questions, and contributions locally. Escape restores focus. All enhancements respect reduced-motion preferences. No System sketches are included.

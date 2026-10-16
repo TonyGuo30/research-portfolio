@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { projects } from '../dist/content.js';
+import { searchProjects } from '../dist/archive.js';
+const ids=query=>searchProjects(projects,query).map(p=>p.id);
+assert.deepEqual(ids(''),projects.map(p=>p.id));
+assert.equal(ids('PARALLAX')[0],'parallax');
+assert.equal(ids('multi–agent')[0],'virt-lab');
+assert.equal(ids('NLP')[0],'hidden-in-plain-text');
+assert.equal(ids('lead author')[0],'prediction-to-execution');
+assert.equal(ids('frontend backend')[0],'enactivecanvas');
+assert.ok(ids('HAI').includes('parallax')&&ids('HAI').includes('enactivecanvas'));
+assert.deepEqual(ids('no_such_research_12345'),[]);
+assert.deepEqual(ids('<script>'),[]);
+assert.equal(new Set(ids('HCI')).size,ids('HCI').length);
+console.log('Verified research search: exact titles, topic aliases, punctuation, contribution queries, and empty results.');
