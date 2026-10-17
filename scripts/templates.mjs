@@ -14,8 +14,9 @@ const diagram = (id) => {
 };
 
 function projectVisual(p, detail=false) {
-  if (!p.image) return diagram(p.id);
-  return `<a class="paper-figure-link" data-project="${p.id}" href="${p.image.src}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} figure at full size"><img class="paper-figure" src="${p.image.src}" width="${p.image.width}" height="${p.image.height}" alt="${p.image.alt}" loading="${detail?'eager':'lazy'}" decoding="async"><span class="figure-zoom">Expand figure ${arrow}</span></a>`;
+  const media=p.image || p.teaser;
+  if (!media) return diagram(p.id);
+  return `<a class="paper-figure-link" data-project="${p.id}" href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} figure at full size"><img class="paper-figure" src="${media.src}" width="${media.width}" height="${media.height}" alt="${media.alt}" loading="${detail?'eager':'lazy'}" decoding="async"><span class="figure-zoom">Expand figure ${arrow}</span></a>`;
 }
 
 function projectMetadata(p) {
@@ -30,7 +31,7 @@ function resultTable(p) {
 }
 
 function projectRow(p) {
-  return `<article class="project-row" id="project-${p.id}"><figure class="project-visual">${projectVisual(p)}<figcaption class="diagram-caption">${p.caption}</figcaption></figure><div class="project-summary"><p class="eyebrow">${p.number} / ${p.category}</p><h3>${p.title}</h3><p class="subtitle">${p.subtitle}</p><p class="summary">${p.summary}</p><a class="text-link" href="work/${p.id}/" aria-label="Read ${p.title} case study">Read case study ${arrow}</a><p class="project-meta">${p.meta}</p></div></article>`;
+  return `<article class="project-row" id="project-${p.id}"><figure class="project-visual">${projectVisual(p)}<figcaption class="diagram-caption">${p.teaser?.caption || p.caption}</figcaption></figure><div class="project-summary"><p class="eyebrow">${p.number} / ${p.category}</p><h3>${p.title}</h3><p class="subtitle">${p.subtitle}</p><p class="summary">${p.summary}</p><a class="text-link" href="work/${p.id}/" aria-label="Read ${p.title} case study">Read case study ${arrow}</a><p class="project-meta">${p.meta}</p></div></article>`;
 }
 
 export function caseStudy(p) {
