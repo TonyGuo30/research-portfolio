@@ -98,7 +98,7 @@ export const projects = [
     source: 'Individual contribution: supplied CV. System and evaluation scope: UIST paper and extended preprint. Teaser figure: Simulating Teams with LLM Agents: Interactive 2D Environments for Studying Human–AI Dynamics, supplied arXiv:2510.08242v1, Figure 1.'
   },
   {
-    teaser: {src:'assets/hidden-in-plain-text-teaser.png',width:1536,height:1024,alt:'AI-generated conceptual teaser: social-web content passes through retrieval toward a generated answer, with a hidden instruction testing the trust boundary.',caption:'Conceptual teaser (AI-generated) · Evidence, instructions, and the retrieval trust boundary.'},
+    teaser: {src:'assets/hidden-in-plain-text-teaser-v2.png',width:1774,height:887,alt:'AI-generated method overview: social-web carriers enter ingestion, sparse or dense retrieval, and generation. Optional sanitization and normalization act at ingestion; attribution gating acts at generation. Evaluation covers attack success, rank shift, answer utility, and latency.',caption:'Method overview (AI-generated) · Social-web carriers, RAG defenses, and evaluation.'},
     id: 'hidden-in-plain-text', number: '05', category: 'NLP · Trustworthy AI', title: 'Hidden-in-Plain-Text',
     subtitle: 'Testing the boundary between evidence and instruction.',
     summary: 'A reproducible benchmark for indirect prompt injection in social-web retrieval-augmented generation.',
@@ -119,7 +119,7 @@ export const projects = [
     source: 'Title, authors, venue, and method: arXiv 2601.10923 and the related ACM DOI.'
   },
   {
-    teaser: {src:'assets/consentdiff-teaser.png',width:1536,height:1024,alt:'AI-generated conceptual teaser: policy clauses are compared with available consent-interface choices across repeated monthly observations.',caption:'Conceptual teaser (AI-generated) · Policy claims and interface choices, observed over time.'},
+    teaser: {src:'assets/consentdiff-teaser-v2.png',width:1774,height:887,alt:'AI-generated method overview: monthly policy and consent-UI snapshots feed parallel clause alignment and DOM-plus-screenshot classification. Policy claims map to observable UI predicates for weighted alignment comparisons. Mappings shown are illustrative.',caption:'Method overview (AI-generated) · Monthly snapshots, parallel analysis, and claim–UI alignment.'},
     id: 'consentdiff', number: '06', category: 'HCI · Privacy & user agency', title: 'ConsentDiff at Scale',
     subtitle: 'Connecting what a site promises to what people can do.',
     summary: 'Longitudinal audits of changing privacy policies and the friction in consent interfaces.',

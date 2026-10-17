@@ -1,7 +1,7 @@
-import { initializeCaseStudy } from './case-study.js?v=20261016-teasers';
-import { initializeArchive } from './archive.js?v=20261016-teasers';
-import { projects } from './content.js?v=20261016-teasers';
-import { initializeInteractions } from './interactions.js?v=20261016-teasers';
+import { initializeCaseStudy } from './case-study.js?v=20261016-paper-teasers';
+import { initializeArchive } from './archive.js?v=20261016-paper-teasers';
+import { projects } from './content.js?v=20261016-paper-teasers';
+import { initializeInteractions } from './interactions.js?v=20261016-paper-teasers';
 
 // Preserve previously shared hash routes. Project content itself is now HTML.
 const legacy=location.hash.match(/^#work\/([^/]+)(?:\/(question|contribution|evidence|next))?$/);
