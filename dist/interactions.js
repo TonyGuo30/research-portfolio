@@ -79,12 +79,13 @@ function initializeViewer() {
     const link = event.target.closest('.paper-figure-link');
     if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     const project = projectData.find(item => item.id === link.dataset.project);
-    const media=project?.image || project?.teaser;
+    const supplemental=link.dataset.figure ? project?.figures?.find(figure=>figure.id===link.dataset.figure) : null;
+    const media=link.dataset.figure ? supplemental : project?.image || project?.teaser;
     if (!media || !dialog.showModal) return;
     event.preventDefault();
     trigger = link;
-    dialog.querySelector('#viewer-title').textContent = `${project.title} · ${project.image ? 'Figure 1' : 'Conceptual teaser'}`;
-    dialog.querySelector('.viewer-caption').textContent = media.caption || project.caption;
+    dialog.querySelector('#viewer-title').textContent = `${project.title} · ${supplemental ? `Figure ${supplemental.number}: ${supplemental.title}` : project.image ? 'Figure 1' : 'Conceptual teaser'}`;
+    dialog.querySelector('.viewer-caption').textContent = supplemental ? `${supplemental.source} · ${supplemental.caption}` : media.caption || project.caption;
     dialog.querySelector('.viewer-original').href = media.src;
     img.src = media.src;
     img.alt = media.alt;

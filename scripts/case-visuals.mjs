@@ -21,6 +21,11 @@ const lenses = {
     ['Simulation outcomes',[.74,.35,.26,.65],'The figure connects simulation records with team and agent performance, and post-hoc interviews.']
   ]
 };
+export function manuscriptGallery(p, section) {
+  const figures=(p.figures || []).filter(figure=>figure.section===section);
+  if(!figures.length) return '';
+  return `<section class="manuscript-gallery" aria-label="${section==='method'?'Method figures':'Study artifacts'} from the paper"><div class="manuscript-gallery-heading"><h3>${section==='method'?'From the manuscript':'Canvases from the study'}</h3><span>Original figures · Click to inspect</span></div><div class="manuscript-grid">${figures.map(figure=>`<figure class="manuscript-figure" id="figure-${figure.id}"><a class="paper-figure-link manuscript-image" data-project="${p.id}" data-figure="${figure.id}" href="${figure.src}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} Figure ${figure.number}: ${figure.title}"><img src="${figure.src}" width="${figure.width}" height="${figure.height}" alt="${figure.alt}" loading="lazy" decoding="async"><span class="figure-zoom">Expand figure ↗</span></a><figcaption><span class="manuscript-source">${figure.source}</span><h4>${figure.title}</h4><p>${figure.caption}</p></figcaption></figure>`).join('')}</div></section>`;
+}
 export function artifactViewer(p) {
   if (!p.image) return '';
   const {width:w,height:h}=p.image;

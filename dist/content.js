@@ -50,6 +50,10 @@ export const projects = [
     links: [{label:'Explore the Grounding Loop',url:'assets/parallax-overview.png'}],
     image:{src:'assets/parallax-overview.png',width:1740,height:874,alt:'Parallax Figure 1: grounding asymmetry between conversation and applications, the Route–Work–Read Back–Ground loop, and its Literature Synthesis and Network Analysis instantiations.'},
     caption: 'Figure 1 from the Parallax manuscript · grounding asymmetry, the Grounding Loop, and two research workflows.',
+    figures: [
+      {id:'grounding-comparison',number:2,section:'method',title:'Beyond the conversation',src:'assets/parallax-grounding-comparison.png',width:1732,height:689,alt:'Parallax Figure 2 compares conversational grounding through chat history with shared-workspace grounding through interactions, artifacts, and chat history.',caption:'Shared-workspace grounding includes interactions and artifacts alongside conversation history.',source:'Supplied Parallax manuscript · Figure 2 · p. 8'},
+      {id:'research-workflows',number:3,section:'method',title:'Two workflows, one grounding loop',src:'assets/parallax-research-workflows.png',width:1796,height:1188,alt:'Parallax Figure 3 shows the shared routing, work, read-back, and grounding workflow, followed by literature synthesis with a browser and PDF reader and network analysis with Gephi.',caption:'Literature synthesis and network analysis connect situated work to traceable, task-relevant evidence.',source:'Supplied Parallax manuscript · Figure 3 · p. 13'}
+    ],
     source: 'Source: Parallax: Addressing Grounding Asymmetry in Human–Agent Collaboration Across Conversation and Applications, supplied manuscript, Figure 1 and Sections 3–8. Individual contribution follows the supplied CV; CHI 2027 submission status confirmed by Tony; study findings are team-level results.'
   },
   {
@@ -73,6 +77,11 @@ export const projects = [
     links:[{label:'Explore the system figure',url:'assets/enactivecanvas-overview.png'}],
     image:{src:'assets/enactivecanvas-overview.png',width:3877,height:2254,alt:'EnactiveCanvas Figure 1 showing the actual canvas interface, spatial idea variation, layered thinking pathways, and the human–AI context panel.'},
     caption:'Figure 1 from the manuscript · the EnactiveCanvas interface and its spatial interaction mechanisms.',
+    figures: [
+      {id:'design-space',number:2,section:'method',title:'Mapping thought to space',src:'assets/enactivecanvas-design-space.png',width:1786,height:776,alt:'EnactiveCanvas Figure 2 maps ten spatial properties, including scale, boundary, distance, and orientation, to cognitive dimensions such as granularity, problem scope, semantic relatedness, and perspective.',caption:'The paper’s design space connects spatial properties to shifts in design cognition.',source:'Supplied EnactiveCanvas manuscript · Figure 2 · p. 6'},
+      {id:'interaction-features',number:3,section:'method',title:'A vocabulary of spatial actions',src:'assets/enactivecanvas-interactions.png',width:1796,height:1242,alt:'EnactiveCanvas Figure 3 illustrates ten interaction features: intent, viewport context, follow-up questions, directional idea variation, divergence, convergence, merging, reflection, sub-canvases, and layers with ratings and connections.',caption:'Ten interaction features support context control, idea generation, reflection, and organization.',source:'Supplied EnactiveCanvas manuscript · Figure 3 · p. 9'},
+      {id:'participant-canvases',number:5,section:'evidence',title:'What participants made',src:'assets/enactivecanvas-participant-canvases.png',width:1776,height:1017,alt:'EnactiveCanvas Figure 5 presents participant-created canvases. Panel A shows two longitudinal-study examples; panel B shows examples from the lab study, with branched notes and intent nodes.',caption:'Participant-created canvases from the longitudinal study (A) and lab study (B).',source:'Supplied EnactiveCanvas manuscript · Figure 5 · p. 14'}
+    ],
     source:'Source: Spatial–Cognitive Mappings for Ill-Defined Design with AI: A Design Space and Its Instantiation in EnactiveCanvas, supplied manuscript, Sections 4–7. Contribution scope and CHI 2027 submission status confirmed by Tony; evaluation findings are team-level results.'
   },
   {
