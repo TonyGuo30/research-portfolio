@@ -4,8 +4,8 @@ export const projects = [
     id: 'prediction-to-execution', number: '02', category: 'HCI · LLM evaluation', title: 'From Prediction to Execution',
     subtitle: 'A plausible prediction is only the beginning.',
     summary: 'A stage-aware evaluation of how LLMs turn task descriptions into executable predictive models for HCI.',
-    meta: 'Lead-author research · Evaluation methodology', role: 'Lead author',
-    metadata: [{label:'Role',value:'Lead author'},{label:'Focus',value:'LLM evaluation · Predictive HCI'},{label:'Scope',value:'Six LLMs + constrained formalizers'},{label:'Status',value:'Research manuscript'}],
+    meta: 'Lead author · In submission to CHI 2027', role: 'Lead author',
+    metadata: [{label:'Role',value:'Lead author'},{label:'Focus',value:'LLM evaluation · Predictive HCI'},{label:'Scope',value:'Six LLMs + constrained formalizers'},{label:'Status',value:'In submission to CHI 2027'}],
     question: 'What evidence should we require before treating an AI-produced predictive model as usable?',
     context: 'Models such as Fitts’ law, Hick–Hyman, and KLM can help analysts reason about interface performance. An LLM can produce a convincing estimate while choosing an unsuitable model, inventing missing inputs, or constructing a specification that cannot execute. This work evaluates those intermediate decisions separately from the final number.',
     contribution: 'I am the lead author of this research on LLM-assisted formalization in predictive HCI. The central contribution is an evaluation methodology that makes family selection, information recovery, representation validation, and deterministic execution separately inspectable. The study connects these diagnostics to implications for how AI-assisted modeling tools should be designed and evaluated.',
@@ -27,13 +27,13 @@ export const projects = [
     links: [{label:'View methodology figure',url:'assets/prediction-to-execution-overview.png'}],
     image:{src:'assets/prediction-to-execution-overview.png',width:1365,height:768,alt:'Figure 1 from From Prediction to Execution: benchmark construction, direct prediction and hybrid formalization, and stage-specific evaluation outcomes.'},
     caption:'Figure 1 from the manuscript · benchmark construction, formalization, and stage-specific evaluation.',
-    source:'Source: From Prediction to Execution: A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI, supplied manuscript, abstract, Sections 3–6, and Tables 3–4. Lead-author role confirmed by Tony.'
+    source:'Source: From Prediction to Execution: A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI, supplied manuscript, abstract, Sections 3–6, and Tables 3–4. Lead-author role and CHI 2027 submission status confirmed by Tony.'
   },
   {
     id: 'parallax', number: '01', category: 'Human–AI collaboration', title: 'Parallax',
     subtitle: 'Keeping people and agents on the same page.',
     summary: 'Preserving task context and evidence across conversations and applications.',
-    meta: '2026 · Research prototype', role: 'User research, interface & systems development',
+    meta: 'In submission to CHI 2027', role: 'User research, interface & systems development',
     advisor: 'Dr. Yifang Wang', period: 'Jan–Sep 2026', status: 'In submission to CHI 2027',
     question: 'How can an agent stay grounded when the work moves beyond the chat?',
     context: 'People work across conversations, documents, and interactive applications. The agent may see the conversation while missing what changed in the workspace. Parallax addresses this grounding asymmetry by connecting task state with application-side evidence.',
@@ -50,14 +50,14 @@ export const projects = [
     links: [{label:'Explore the Grounding Loop',url:'assets/parallax-overview.png'}],
     image:{src:'assets/parallax-overview.png',width:1740,height:874,alt:'Parallax Figure 1: grounding asymmetry between conversation and applications, the Route–Work–Read Back–Ground loop, and its Literature Synthesis and Network Analysis instantiations.'},
     caption: 'Figure 1 from the Parallax manuscript · grounding asymmetry, the Grounding Loop, and two research workflows.',
-    source: 'Source: Parallax: Addressing Grounding Asymmetry in Human–Agent Collaboration Across Conversation and Applications, supplied manuscript, Figure 1 and Sections 3–8. Individual contribution and submission status follow the supplied CV; study findings are team-level results.'
+    source: 'Source: Parallax: Addressing Grounding Asymmetry in Human–Agent Collaboration Across Conversation and Applications, supplied manuscript, Figure 1 and Sections 3–8. Individual contribution follows the supplied CV; CHI 2027 submission status confirmed by Tony; study findings are team-level results.'
   },
   {
     id: 'enactivecanvas', number: '03', category: 'Human–AI interaction · Creativity support', title: 'EnactiveCanvas',
     subtitle: 'Thinking with AI beyond the chat window.',
     summary: 'A spatial workspace where arranging, selecting, and moving ideas becomes part of the conversation with AI.',
-    meta: 'System design · Frontend & backend', role: 'System design · Frontend & backend',
-    metadata:[{label:'Role',value:'System design · Frontend & backend'},{label:'Stack',value:'JavaScript · Fabric.js · Python · Flask'},{label:'Focus',value:'Spatial interaction · Human–AI co-creation'},{label:'Status',value:'Research manuscript'}],
+    meta: 'System design · In submission to CHI 2027', role: 'System design · Frontend & backend',
+    metadata:[{label:'Role',value:'System design · Frontend & backend'},{label:'Stack',value:'JavaScript · Fabric.js · Python · Flask'},{label:'Focus',value:'Spatial interaction · Human–AI co-creation'},{label:'Status',value:'In submission to CHI 2027'}],
     question: 'How can spatial interaction support design when the problem—and the designer’s intent—is still taking shape?',
     context: 'Ill-defined design problems evolve as people explore potential solutions. EnactiveCanvas turns a two-dimensional workspace into a way to organize fragments, revisit alternatives, and communicate context to an LLM. The system instantiates a spatial–cognitive design space connecting design cognition with spatial properties and actions.',
     contribution: 'My primary contribution was system design across the frontend and backend. I contributed to the interactive web system that connects canvas operations and note state with context-aware AI generation. This contribution centers on the system; the design-space framework and user-study findings described here belong to the collaborative research.',
@@ -73,7 +73,7 @@ export const projects = [
     links:[{label:'Explore the system figure',url:'assets/enactivecanvas-overview.png'}],
     image:{src:'assets/enactivecanvas-overview.png',width:3877,height:2254,alt:'EnactiveCanvas Figure 1 showing the actual canvas interface, spatial idea variation, layered thinking pathways, and the human–AI context panel.'},
     caption:'Figure 1 from the manuscript · the EnactiveCanvas interface and its spatial interaction mechanisms.',
-    source:'Source: Spatial–Cognitive Mappings for Ill-Defined Design with AI: A Design Space and Its Instantiation in EnactiveCanvas, supplied manuscript, Sections 4–7. Contribution scope confirmed by Tony; evaluation findings are team-level results.'
+    source:'Source: Spatial–Cognitive Mappings for Ill-Defined Design with AI: A Design Space and Its Instantiation in EnactiveCanvas, supplied manuscript, Sections 4–7. Contribution scope and CHI 2027 submission status confirmed by Tony; evaluation findings are team-level results.'
   },
   {
     id: 'virt-lab', number: '04', category: 'Multi-agent systems', title: 'VirT-Lab',
@@ -146,8 +146,8 @@ projects.sort((a,b)=>Number(a.number)-Number(b.number));
 
 export const publications = [
   {title:'Parallax',subtitle:'Addressing Grounding Asymmetry in Human–Agent Collaboration Across Conversation and Applications',authors:'Contribution · User research, interface & systems development',venue:'In submission to CHI 2027',caseId:'parallax'},
-  {title:'From Prediction to Execution',subtitle:'A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI',authors:'Lead author · Tony (Haoze) Guo',venue:'Research manuscript',caseId:'prediction-to-execution'},
-  {title:'EnactiveCanvas',subtitle:'Spatial–Cognitive Mappings for Ill-Defined Design with AI: A Design Space and Its Instantiation in EnactiveCanvas',authors:'Contribution · System design, frontend & backend',venue:'Research manuscript',caseId:'enactivecanvas'},
+  {title:'From Prediction to Execution',subtitle:'A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI',authors:'Lead author · Tony (Haoze) Guo',venue:'In submission to CHI 2027',caseId:'prediction-to-execution'},
+  {title:'EnactiveCanvas',subtitle:'Spatial–Cognitive Mappings for Ill-Defined Design with AI: A Design Space and Its Instantiation in EnactiveCanvas',authors:'Contribution · System design, frontend & backend',venue:'In submission to CHI 2027',caseId:'enactivecanvas'},
   {title:'ConsentDiff at Scale',subtitle:'Longitudinal Audits of Web Privacy Policy Changes and UI Frictions',authors:'Haoze Guo',venue:'CHI EA 2026',url:'https://doi.org/10.1145/3772363.3798570'},
   {title:'Hidden-in-Plain-Text',subtitle:'A Benchmark for Social-Web Indirect Prompt Injection in RAG',authors:'Haoze Guo and Ziqi Wei',venue:'WWW 2026',url:'https://doi.org/10.1145/3774904.3792853'},
   {title:'VIRT-LAB',subtitle:'An AI-Powered System for Flexible, Customizable, and Large-scale Team Simulations',authors:'Mohammed Almutairi, Charles Chiang, Haoze Guo, et al.',venue:'UIST Adjunct 2025',url:'https://doi.org/10.1145/3746058.3758994'},
