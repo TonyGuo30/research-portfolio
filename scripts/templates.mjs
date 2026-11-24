@@ -1,4 +1,3 @@
-import { homeCover, coverCaption } from './home-covers.mjs';
 import { projects, publications } from '../dist/content.js';
 import { briefs } from './case-briefs.mjs';
 import { artifactViewer, demoWalkthrough, evidenceVisual, manuscriptGallery } from './case-visuals.mjs';
@@ -17,9 +16,8 @@ const diagram = (id) => {
 function projectVisual(p) {
   const media = p.image || p.teaser;
   if (!media) return diagram(p.id);
-  const cover = homeCover(p);
-  return `<div class="card-media"><a class="case-image" href="work/${p.id}/" aria-label="Read ${p.title} case study">${cover || `<img class="paper-figure" src="${media.src}" width="${media.width}" height="${media.height}" alt="${media.alt}" loading="lazy" decoding="async">`}</a>
-    <a class="card-expand paper-figure-link" data-project="${p.id}" href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="Expand ${p.title} figure">${cover?'View paper figure':'Expand figure'} ${arrow}</a></div>`;
+  return `<div class="card-media"><a class="case-image" href="work/${p.id}/" aria-label="Read ${p.title} case study"><img class="paper-figure" src="${media.src}" width="${media.width}" height="${media.height}" alt="${media.alt}" loading="lazy" decoding="async"></a>
+    <a class="card-expand paper-figure-link" data-project="${p.id}" href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="Expand ${p.title} figure">Expand figure ${arrow}</a></div>`;
 }
 
 function projectMetadata(p) {
@@ -34,7 +32,7 @@ function resultTable(p) {
 }
 
 function projectRow(p) {
-  return `<article class="project-row" id="project-${p.id}"><figure class="project-visual">${projectVisual(p)}<figcaption class="diagram-caption">${coverCaption(p) || p.teaser?.caption || p.caption}</figcaption></figure><div class="project-summary"><p class="eyebrow">${p.number} / ${p.category}</p><h3><a href="work/${p.id}/">${p.title}</a></h3><p class="subtitle">${p.subtitle}</p><p class="summary">${p.summary}</p><a class="text-link" href="work/${p.id}/" aria-label="Read ${p.title} case study">Read case study ${arrow}</a><p class="project-meta">${p.meta}</p></div></article>`;
+  return `<article class="project-row" id="project-${p.id}"><figure class="project-visual">${projectVisual(p)}<figcaption class="diagram-caption">${p.teaser?.caption || p.caption}</figcaption></figure><div class="project-summary"><p class="eyebrow">${p.number} / ${p.category}</p><h3><a href="work/${p.id}/">${p.title}</a></h3><p class="subtitle">${p.subtitle}</p><p class="summary">${p.summary}</p><a class="text-link" href="work/${p.id}/" aria-label="Read ${p.title} case study">Read case study ${arrow}</a><p class="project-meta">${p.meta}</p></div></article>`;
 }
 
 const related = {
