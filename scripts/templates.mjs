@@ -1,6 +1,6 @@
 import { projects, publications } from '../dist/content.js';
 import { briefs } from './case-briefs.mjs';
-import { artifactViewer, evidenceVisual, manuscriptGallery } from './case-visuals.mjs';
+import { artifactViewer, demoWalkthrough, evidenceVisual, manuscriptGallery } from './case-visuals.mjs';
 
 const arrow = '<svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg>';
 const external = (url, label, cls='text-link') => `<a class="${cls}" href="${url}" target="_blank" rel="noopener noreferrer">${label} ${arrow}</a>`;
@@ -58,6 +58,7 @@ export function caseStudy(p) {
       </div>${projectMetadata(p)}
     </header>
     <nav class="case-toc" aria-label="On this page">${[['question','Overview'],['evidence','Evidence'],['contribution','Method'],['next','Next question']].map(([id,label])=>`<a href="work/${p.id}/#case-${id}" data-section="case-${id}">${label}</a>`).join('')}</nav>
+    ${demoWalkthrough(p)}
     ${p.image ? artifactViewer(p) : ''}
     <section class="case-chapter" id="case-evidence">
       <div class="chapter-heading"><p class="eyebrow">Evidence</p><h2>${brief.evidenceTitle}</h2></div>

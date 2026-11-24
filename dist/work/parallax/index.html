@@ -8,8 +8,8 @@
   <title>Parallax — Tony Guo’s Research Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23626c45'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-size='23' fill='%23f6f5f0'%3ET%3C/text%3E%3C/svg%3E">
   <base href="../../">
-  <link rel="stylesheet" href="styles.css?v=20261123-browse">
-  <script type="module" src="app.js?v=20261123-browse"></script>
+  <link rel="stylesheet" href="styles.css?v=20261123-demo">
+  <script type="module" src="app.js?v=20261123-demo"></script>
 </head>
 <body>
   <a class="skip-link" href="work/parallax/#main">Skip to content</a>
@@ -31,6 +31,32 @@
       </div><dl class="case-metadata"><div><dt>Role</dt><dd>First author · User research and system design</dd></div><div><dt>Advisor</dt><dd>Dr. Yifang Wang</dd></div><div><dt>Period</dt><dd>Jan–Sep 2026</dd></div><div><dt>Status</dt><dd>In submission to CHI 2027</dd></div></dl>
     </header>
     <nav class="case-toc" aria-label="On this page"><a href="work/parallax/#case-question" data-section="case-question">Overview</a><a href="work/parallax/#case-evidence" data-section="case-evidence">Evidence</a><a href="work/parallax/#case-contribution" data-section="case-contribution">Method</a><a href="work/parallax/#case-next" data-section="case-next">Next question</a></nav>
+    <section id="walkthrough" class="demo-walkthrough" aria-labelledby="walkthrough-title">
+    <p class="eyebrow">Literature synthesis · System demo</p>
+    <h2 id="walkthrough-title">From a PDF highlight to the next reply</h2>
+    <fieldset class="demo-frames"><legend class="visually-hidden">Choose a moment in the recorded session</legend>
+      <input class="demo-selector" type="radio" name="demo-frame" id="pick-demo-highlight" aria-controls="frame-demo-highlight" checked>
+        <label for="pick-demo-highlight" style="--step:1"><span>04:55</span> Highlight</label>
+        <figure id="frame-demo-highlight" class="demo-frame">
+          <a href="assets/parallax-demo-highlight.webp" data-project="parallax" data-figure="demo-highlight" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand demo screenshot at 04:55">
+            <img src="assets/parallax-demo-highlight.webp" width="724" height="466" loading="lazy" alt="A yellow highlight covers a chart caption on page 2 in Zotero, with a comment being entered below it."><span class="figure-zoom">Expand screenshot ↗</span>
+          </a><figcaption>In Zotero, the researcher highlights a caption about growth in human–AI research and begins a note on the passage.</figcaption>
+        </figure><input class="demo-selector" type="radio" name="demo-frame" id="pick-demo-checkpoint" aria-controls="frame-demo-checkpoint" >
+        <label for="pick-demo-checkpoint" style="--step:2"><span>05:05</span> Read back</label>
+        <figure id="frame-demo-checkpoint" class="demo-frame">
+          <a href="assets/parallax-demo-checkpoint.webp" data-project="parallax" data-figure="demo-checkpoint" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand demo screenshot at 05:05">
+            <img src="assets/parallax-demo-checkpoint.webp" width="844" height="319" loading="lazy" alt="The Annotation Checkpoint lists the survey as P004 with seven highlights on pages 1, 2, 3, and 7."><span class="figure-zoom">Expand screenshot ↗</span>
+          </a><figcaption>Back in Parallax, the survey appears as P004 with seven highlights, including evidence from page 2.</figcaption>
+        </figure><input class="demo-selector" type="radio" name="demo-frame" id="pick-demo-reply" aria-controls="frame-demo-reply" >
+        <label for="pick-demo-reply" style="--step:3"><span>05:10</span> Respond</label>
+        <figure id="frame-demo-reply" class="demo-frame">
+          <a href="assets/parallax-demo-reply.webp" data-project="parallax" data-figure="demo-reply" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand demo screenshot at 05:10">
+            <img src="assets/parallax-demo-reply.webp" width="844" height="219" loading="lazy" alt="The researcher asks what to do next. The reply recommends synthesis because six selected papers have annotations, and asks for an evidence and outline review."><span class="figure-zoom">Expand screenshot ↗</span>
+          </a><figcaption>Asked what to do next, Parallax recommends reviewing the six annotated papers and confirming the outline before drafting.</figcaption>
+        </figure>
+    </fieldset>
+    <p class="demo-decision"><strong>My design decision</strong> I kept a review step before drafting so the researcher could change which papers the agent would use.</p>
+  </section>
     <section class="artifact-viewer" aria-label="Explore the figure"><div class="artifact-paper">
     <div class="artifact-topline"><span>MANUSCRIPT · FIGURE 1</span><a class="paper-figure-link artifact-expand" data-project="parallax" href="assets/parallax-overview.png" target="_blank" rel="noopener noreferrer">Expand figure ↗</a></div>
     <svg class="artifact-canvas" viewBox="0 0 1740 874" role="group" aria-labelledby="artifact-title"><title id="artifact-title">Parallax Figure 1: grounding asymmetry between conversation and applications, the Route–Work–Read Back–Ground loop, and its Literature Synthesis and Network Analysis instantiations.</title>

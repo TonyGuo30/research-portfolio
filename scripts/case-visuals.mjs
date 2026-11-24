@@ -36,6 +36,25 @@ export function manuscriptGallery(p, section) {
   if(!figures.length) return '';
   return `<section class="manuscript-gallery" aria-label="${section==='method'?'Method figures':'Study artifacts'} from the paper"><div class="manuscript-gallery-heading"><h3>${section==='method'?'From the manuscript':'Canvases from the study'}</h3><span>Original figures · Click to inspect</span></div><div class="manuscript-grid">${figures.map(figure=>`<figure class="manuscript-figure" id="figure-${figure.id}"><a class="paper-figure-link manuscript-image" data-project="${p.id}" data-figure="${figure.id}" href="${figure.src}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} Figure ${figure.number}: ${figure.title}"><img src="${figure.src}" width="${figure.width}" height="${figure.height}" alt="${figure.alt}" loading="lazy" decoding="async"><span class="figure-zoom">Expand figure ↗</span></a><figcaption><span class="manuscript-source">${figure.source}</span><h4>${figure.title}</h4><p>${figure.caption}</p></figcaption></figure>`).join('')}</div></section>`;
 }
+export function demoWalkthrough(p) {
+  const frames = p.figures?.filter(figure => figure.section === 'walkthrough');
+  if (!frames?.length) return '';
+  return `<section id="walkthrough" class="demo-walkthrough" aria-labelledby="walkthrough-title">
+    <p class="eyebrow">Literature synthesis · System demo</p>
+    <h2 id="walkthrough-title">From a PDF highlight to the next reply</h2>
+    <fieldset class="demo-frames"><legend class="visually-hidden">Choose a moment in the recorded session</legend>
+      ${frames.map((f,i)=>`<input class="demo-selector" type="radio" name="demo-frame" id="pick-${f.id}" aria-controls="frame-${f.id}" ${i===0?'checked':''}>
+        <label for="pick-${f.id}" style="--step:${i+1}"><span>${f.time}</span> ${f.title}</label>
+        <figure id="frame-${f.id}" class="demo-frame">
+          <a href="${f.src}" data-project="${p.id}" data-figure="${f.id}" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand demo screenshot at ${f.time}">
+            <img src="${f.src}" width="${f.width}" height="${f.height}" loading="lazy" alt="${f.alt}"><span class="figure-zoom">Expand screenshot ↗</span>
+          </a><figcaption>${f.caption}</figcaption>
+        </figure>`).join('')}
+    </fieldset>
+    <p class="demo-decision"><strong>My design decision</strong> I kept a review step before drafting so the researcher could change which papers the agent would use.</p>
+  </section>`;
+}
+
 export function artifactViewer(p) {
   const media = p.image || p.teaser;
   const {width:w,height:h} = media;

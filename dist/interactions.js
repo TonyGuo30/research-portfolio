@@ -84,7 +84,11 @@ function initializeViewer() {
     if (!media || !dialog.showModal) return;
     event.preventDefault();
     trigger = link;
-    dialog.querySelector('#viewer-title').textContent = `${project.title} · ${supplemental ? `Figure ${supplemental.number}: ${supplemental.title}` : project.image ? 'Figure 1' : 'Conceptual teaser'}`;
+    let label = project.image ? 'Figure 1' : 'Conceptual teaser';
+    if (supplemental) {
+      label = supplemental.section === 'walkthrough' ? `Demo · ${supplemental.time} · ${supplemental.title}` : `Figure ${supplemental.number}: ${supplemental.title}`;
+    }
+    dialog.querySelector('#viewer-title').textContent = `${project.title} · ${label}`;
     dialog.querySelector('.viewer-caption').textContent = supplemental ? `${supplemental.source} · ${supplemental.caption}` : media.caption || project.caption;
     dialog.querySelector('.viewer-original').href = media.src;
     img.src = media.src;
