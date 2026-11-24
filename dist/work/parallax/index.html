@@ -8,8 +8,8 @@
   <title>Parallax — Tony Guo’s Research Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23626c45'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-size='23' fill='%23f6f5f0'%3ET%3C/text%3E%3C/svg%3E">
   <base href="../../">
-  <link rel="stylesheet" href="styles.css?v=20261123-video">
-  <script type="module" src="app.js?v=20261123-video"></script>
+  <link rel="stylesheet" href="styles.css?v=20261123-evidence">
+  <script type="module" src="app.js?v=20261123-evidence"></script>
 </head>
 <body>
   <a class="skip-link" href="work/parallax/#main">Skip to content</a>
@@ -40,19 +40,43 @@
         <figure id="frame-demo-highlight" class="demo-frame">
           <a href="assets/parallax-demo-highlight.webp" data-project="parallax" data-figure="demo-highlight" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand Highlight screenshot">
             <img src="assets/parallax-demo-highlight.webp" width="724" height="466" loading="lazy" alt="A yellow highlight covers a chart caption on page 2 in Zotero, with a comment being entered below it."><span class="figure-zoom">Expand screenshot ↗</span>
-          </a><figcaption>In Zotero, the researcher highlights a caption about growth in human–AI research and begins a note on the passage.</figcaption>
+          </a><div class="demo-detail" id="detail-demo-highlight" hidden>
+    <div class="evidence-pan" role="region" tabindex="0" aria-label="Magnified screenshot detail. Scroll horizontally to inspect.">
+      <svg viewBox="0 228 724 174" style="--detail-width:905px" role="img" aria-label="A yellow highlight covers a chart caption on page 2 in Zotero, with a comment being entered below it.">
+        <image href="assets/parallax-demo-highlight.webp" width="724" height="466"/>
+        <rect class="evidence-outline" x="7" y="270" width="704" height="61" rx="3"/>
+      </svg>
+    </div>
+    <button type="button" class="evidence-reset">Show full screenshot</button>
+  </div><figcaption>In Zotero, the researcher <span data-evidence-x="55">highlights a caption</span> about growth in human–AI research and begins a note on the passage.</figcaption>
         </figure><input class="demo-selector" type="radio" name="demo-frame" id="pick-demo-checkpoint" aria-controls="frame-demo-checkpoint" >
         <label for="pick-demo-checkpoint" style="--step:2">Read back</label>
         <figure id="frame-demo-checkpoint" class="demo-frame">
           <a href="assets/parallax-demo-checkpoint.webp" data-project="parallax" data-figure="demo-checkpoint" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand Read back screenshot">
             <img src="assets/parallax-demo-checkpoint.webp" width="844" height="319" loading="lazy" alt="The Annotation Checkpoint lists the survey as P004 with seven highlights on pages 1, 2, 3, and 7."><span class="figure-zoom">Expand screenshot ↗</span>
-          </a><figcaption>Back in Parallax, the survey appears as P004 with seven highlights, including evidence from page 2.</figcaption>
+          </a><div class="demo-detail" id="detail-demo-checkpoint" hidden>
+    <div class="evidence-pan" role="region" tabindex="0" aria-label="Magnified screenshot detail. Scroll horizontally to inspect.">
+      <svg viewBox="0 23 844 115" style="--detail-width:1055px" role="img" aria-label="The Annotation Checkpoint lists the survey as P004 with seven highlights on pages 1, 2, 3, and 7.">
+        <image href="assets/parallax-demo-checkpoint.webp" width="844" height="319"/>
+        <rect class="evidence-outline" x="3" y="93" width="838" height="40" rx="3"/>
+      </svg>
+    </div>
+    <button type="button" class="evidence-reset">Show full screenshot</button>
+  </div><figcaption>Back in Parallax, the survey appears as <span data-evidence-x="36">P004</span> with <span data-evidence-x="378">seven highlights</span>, including evidence from <span data-evidence-x="500">page 2</span>.</figcaption>
         </figure><input class="demo-selector" type="radio" name="demo-frame" id="pick-demo-reply" aria-controls="frame-demo-reply" >
         <label for="pick-demo-reply" style="--step:3">Respond</label>
         <figure id="frame-demo-reply" class="demo-frame">
           <a href="assets/parallax-demo-reply.webp" data-project="parallax" data-figure="demo-reply" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand Respond screenshot">
             <img src="assets/parallax-demo-reply.webp" width="844" height="219" loading="lazy" alt="The researcher asks what to do next. The reply recommends synthesis because six selected papers have annotations, and asks for an evidence and outline review."><span class="figure-zoom">Expand screenshot ↗</span>
-          </a><figcaption>Asked what to do next, Parallax recommends reviewing the six annotated papers and confirming the outline before drafting.</figcaption>
+          </a><div class="demo-detail" id="detail-demo-reply" hidden>
+    <div class="evidence-pan" role="region" tabindex="0" aria-label="Magnified screenshot detail. Scroll horizontally to inspect.">
+      <svg viewBox="0 43 844 139" style="--detail-width:1055px" role="img" aria-label="The researcher asks what to do next. The reply recommends synthesis because six selected papers have annotations, and asks for an evidence and outline review.">
+        <image href="assets/parallax-demo-reply.webp" width="844" height="219"/>
+        <rect class="evidence-outline" x="15" y="88" width="807" height="57" rx="3"/>
+      </svg>
+    </div>
+    <button type="button" class="evidence-reset">Show full screenshot</button>
+  </div><figcaption>Asked what to do next, Parallax recommends reviewing the <span data-evidence-x="423">six annotated papers</span> and confirming the outline before drafting.</figcaption>
         </figure>
     </fieldset>
     <p class="demo-decision"><strong>My design decision</strong> I kept a review step before drafting so the researcher could change which papers the agent would use.</p>

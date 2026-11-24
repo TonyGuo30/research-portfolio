@@ -1,5 +1,50 @@
 // Optional figure and evidence inspection. All source content stays in the HTML.
+function initializeEvidenceLinks(frame) {
+  const full = frame.querySelector('.demo-image');
+  const detail = frame.querySelector('.demo-detail');
+  const pan = detail.querySelector('.evidence-pan');
+  const svg = pan.querySelector('svg');
+  let active;
+
+  function reset(restoreFocus) {
+    if (!active) return;
+    detail.hidden = true;
+    full.hidden = false;
+    active.setAttribute('aria-expanded','false');
+    if (restoreFocus) active.focus({preventScroll:true});
+    active = null;
+  }
+
+  frame.querySelectorAll('[data-evidence-x]').forEach(phrase=>{
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'evidence-reference';
+    button.textContent = phrase.textContent;
+    button.setAttribute('aria-controls',detail.id);
+    button.setAttribute('aria-expanded','false');
+    const x = Number(phrase.dataset.evidenceX);
+    phrase.replaceWith(button);
+    button.addEventListener('click',()=>{
+      if (active === button) { reset(true); return; }
+      active?.setAttribute('aria-expanded','false');
+      active = button;
+      button.setAttribute('aria-expanded','true');
+      full.hidden = true;
+      detail.hidden = false;
+      const view = svg.viewBox.baseVal;
+      const position = (x-view.x)/view.width*svg.getBoundingClientRect().width;
+      pan.scrollLeft = position-pan.clientWidth/2;
+    });
+  });
+  detail.querySelector('.evidence-reset').addEventListener('click',()=>reset(true));
+  frame.addEventListener('keydown',event=>{
+    if (active && event.key==='Escape') { event.preventDefault(); reset(true); }
+  });
+  frame.closest('fieldset').addEventListener('change',()=>reset(false));
+}
+
 export function initializeCaseStudy() {
+  document.querySelectorAll('.demo-frame:has(.demo-detail)').forEach(initializeEvidenceLinks);
   document.querySelectorAll('.artifact-viewer').forEach(viewer=>{
     const svg=viewer.querySelector('.artifact-canvas');
     const title=svg.querySelector('title');

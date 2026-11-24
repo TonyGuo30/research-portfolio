@@ -36,6 +36,32 @@ export function manuscriptGallery(p, section) {
   if(!figures.length) return '';
   return `<section class="manuscript-gallery" aria-label="${section==='method'?'Method figures':'Study artifacts'} from the paper"><div class="manuscript-gallery-heading"><h3>${section==='method'?'From the manuscript':'Canvases from the study'}</h3><span>Original figures · Click to inspect</span></div><div class="manuscript-grid">${figures.map(figure=>`<figure class="manuscript-figure" id="figure-${figure.id}"><a class="paper-figure-link manuscript-image" data-project="${p.id}" data-figure="${figure.id}" href="${figure.src}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} Figure ${figure.number}: ${figure.title}"><img src="${figure.src}" width="${figure.width}" height="${figure.height}" alt="${figure.alt}" loading="lazy" decoding="async"><span class="figure-zoom">Expand figure ↗</span></a><figcaption><span class="manuscript-source">${figure.source}</span><h4>${figure.title}</h4><p>${figure.caption}</p></figcaption></figure>`).join('')}</div></section>`;
 }
+function linkedFrameCaption(frame) {
+  let remaining = frame.caption;
+  let caption = '';
+  for (const [phrase,center] of frame.focus.references) {
+    const index = remaining.indexOf(phrase);
+    if (index < 0) throw new Error(`Missing evidence phrase in ${frame.id}: ${phrase}`);
+    caption += remaining.slice(0,index) + `<span data-evidence-x="${center}">${phrase}</span>`;
+    remaining = remaining.slice(index + phrase.length);
+  }
+  return caption + remaining;
+}
+
+function frameDetail(frame) {
+  const [x,y,w,h] = frame.focus.box;
+  const crop = frame.focus.crop;
+  return `<div class="demo-detail" id="detail-${frame.id}" hidden>
+    <div class="evidence-pan" role="region" tabindex="0" aria-label="Magnified screenshot detail. Scroll horizontally to inspect.">
+      <svg viewBox="${crop.join(' ')}" style="--detail-width:${Math.round(crop[2]*1.25)}px" role="img" aria-label="${frame.alt}">
+        <image href="${frame.src}" width="${frame.width}" height="${frame.height}"/>
+        <rect class="evidence-outline" x="${x}" y="${y}" width="${w}" height="${h}" rx="3"/>
+      </svg>
+    </div>
+    <button type="button" class="evidence-reset">Show full screenshot</button>
+  </div>`;
+}
+
 export function demoWalkthrough(p) {
   const frames = p.figures?.filter(figure => figure.section === 'walkthrough');
   if (!frames?.length) return '';
@@ -48,7 +74,7 @@ export function demoWalkthrough(p) {
         <figure id="frame-${f.id}" class="demo-frame">
           <a href="${f.src}" data-project="${p.id}" data-figure="${f.id}" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand ${f.title} screenshot">
             <img src="${f.src}" width="${f.width}" height="${f.height}" loading="lazy" alt="${f.alt}"><span class="figure-zoom">Expand screenshot ↗</span>
-          </a><figcaption>${f.caption}</figcaption>
+          </a>${frameDetail(f)}<figcaption>${linkedFrameCaption(f)}</figcaption>
         </figure>`).join('')}
     </fieldset>
     <p class="demo-decision"><strong>My design decision</strong> I kept a review step before drafting so the researcher could change which papers the agent would use.</p>
