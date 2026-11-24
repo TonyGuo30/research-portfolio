@@ -8,7 +8,7 @@ export const briefs = {
     steps: ['Route the work', 'Read back evidence', 'Ground selectively']
   },
   'prediction-to-execution': {
-    role: 'As lead author, I developed the evaluation methodology for inspecting model selection, formalization, and execution separately.',
+    role: 'As first author, I developed the evaluation methodology for inspecting model selection, formalization, and execution separately.',
     takeaway: 'Selecting the right model does not guarantee an executable specification. Coverage matters alongside prediction error.',
     facts: [['6', 'LLM formalizers'], ['300', 'Formalization conditions'], ['64.7–96.0%', 'Execution coverage']],
     caveat: 'Benchmark findings do not establish behavioral validity or benefit for practitioners.',
@@ -29,10 +29,10 @@ export const briefs = {
     steps: ['Schedule events', 'Connect reasoning to action', 'Inspect team behavior']
   },
   'hidden-in-plain-text': {
-    role: 'I coauthored OpenRAG-Soc, a benchmark and evaluation harness for social-web prompt injection in RAG.',
+    role: 'As first author, I worked with Ziqi Wei to develop OpenRAG-Soc and its evaluation harness.',
     takeaway: 'One evaluation pipeline connects attack carriers, retrieval choices, and defenses to their utility and latency trade-offs.',
     facts: [['Sparse + dense', 'Retrieval paths'], ['3', 'Mitigation approaches'], ['End to end', 'Ingestion → retrieval → generation']],
-    caveat: 'Joint research with Ziqi Wei; public materials do not specify an individual implementation split.',
+    caveat: 'The evaluation covers the retrieval pipelines and defenses included in OpenRAG-Soc.',
     steps: ['Vary retrieval', 'Compare defenses', 'Measure trade-offs']
   },
   consentdiff: {

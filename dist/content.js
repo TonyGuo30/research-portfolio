@@ -3,12 +3,12 @@ export const projects = [
   {
     id: 'prediction-to-execution', number: '02', category: 'HCI · LLM evaluation', title: 'From Prediction to Execution',
     subtitle: 'A plausible prediction is only the beginning.',
-    summary: 'A stage-aware evaluation of how LLMs turn task descriptions into executable predictive models for HCI.',
-    meta: 'Lead author · In submission to CHI 2027', role: 'Lead author',
-    metadata: [{label:'Role',value:'Lead author'},{label:'Focus',value:'LLM evaluation · Predictive HCI'},{label:'Scope',value:'Six LLMs + constrained formalizers'},{label:'Status',value:'In submission to CHI 2027'}],
+    summary: 'I designed a benchmark to test when six LLMs can choose the right predictive model for an HCI task and when they can produce a specification that runs.',
+    meta: 'First author · In submission to CHI 2027', role: 'First author',
+    metadata: [{label:'Role',value:'First author'},{label:'Focus',value:'LLM evaluation · Predictive HCI'},{label:'Scope',value:'Six LLMs + constrained formalizers'},{label:'Status',value:'In submission to CHI 2027'}],
     question: 'What evidence should we require before treating an AI-produced predictive model as usable?',
     context: 'Models such as Fitts’ law, Hick–Hyman, and KLM can help analysts reason about interface performance. An LLM can produce a convincing estimate while choosing an unsuitable model, inventing missing inputs, or constructing a specification that cannot execute. This work evaluates those intermediate decisions separately from the final number.',
-    contribution: 'I am the lead author of this research on LLM-assisted formalization in predictive HCI. The central contribution is an evaluation methodology that makes family selection, information recovery, representation validation, and deterministic execution separately inspectable. The study connects these diagnostics to implications for how AI-assisted modeling tools should be designed and evaluated.',
+    contribution: 'I am the first author of this research on LLM-assisted formalization in predictive HCI. The central contribution is an evaluation methodology that makes family selection, information recovery, representation validation, and deterministic execution separately inspectable. The study connects these diagnostics to implications for how AI-assisted modeling tools should be designed and evaluated.',
     methods: [
       ['Separate the stages', 'Distinguish direct numerical prediction from a hybrid pipeline in which the LLM proposes a structured specification and an independent validator and calculator govern execution.'],
       ['Test distinct condition sets', 'Evaluate 600 direct-prediction conditions across six families and five representations, plus a separate 300-condition formalization set spanning four families.'],
@@ -27,13 +27,13 @@ export const projects = [
     links: [{label:'View methodology figure',url:'assets/prediction-to-execution-overview.png'}],
     image:{src:'assets/prediction-to-execution-overview.png',width:1365,height:768,alt:'Figure 1 from From Prediction to Execution: benchmark construction, direct prediction and hybrid formalization, and stage-specific evaluation outcomes.'},
     caption:'Figure 1 from the manuscript · benchmark construction, formalization, and stage-specific evaluation.',
-    source:'Source: From Prediction to Execution: A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI, supplied manuscript, abstract, Sections 3–6, and Tables 3–4. Lead-author role and CHI 2027 submission status confirmed by Tony.'
+    source:'Source: From Prediction to Execution: A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI, supplied manuscript, abstract, Sections 3–6, and Tables 3–4. First-author role and CHI 2027 submission status confirmed by Tony.'
   },
   {
     id: 'parallax', number: '01', category: 'Human–AI collaboration', title: 'Parallax',
     subtitle: 'Keeping people and agents on the same page.',
-    summary: 'Preserving task context and evidence across conversations and applications.',
-    meta: 'In submission to CHI 2027', role: 'User research, interface & systems development',
+    summary: 'I designed how Parallax uses a researcher’s PDF annotations and graph selections to inform the agent’s next response.',
+    meta: 'First author · In submission to CHI 2027', role: 'First author · User research and system design',
     advisor: 'Dr. Yifang Wang', period: 'Jan–Sep 2026', status: 'In submission to CHI 2027',
     question: 'How can an agent stay grounded when the work moves beyond the chat?',
     context: 'People work across conversations, documents, and interactive applications. The agent may see the conversation while missing what changed in the workspace. Parallax addresses this grounding asymmetry by connecting task state with application-side evidence.',
@@ -59,7 +59,7 @@ export const projects = [
   {
     id: 'enactivecanvas', number: '03', category: 'Human–AI interaction · Creativity support', title: 'EnactiveCanvas',
     subtitle: 'Thinking with AI beyond the chat window.',
-    summary: 'A spatial workspace where arranging, selecting, and moving ideas becomes part of the conversation with AI.',
+    summary: 'I helped design the frontend and backend so that selecting or moving notes on the canvas gives the AI context for its next response.',
     meta: 'System design · In submission to CHI 2027', role: 'System design · Frontend & backend',
     metadata:[{label:'Role',value:'System design · Frontend & backend'},{label:'Stack',value:'JavaScript · Fabric.js · Python · Flask'},{label:'Focus',value:'Spatial interaction · Human–AI co-creation'},{label:'Status',value:'In submission to CHI 2027'}],
     question: 'How can spatial interaction support design when the problem—and the designer’s intent—is still taking shape?',
@@ -87,7 +87,7 @@ export const projects = [
   {
     id: 'virt-lab', number: '04', category: 'Multi-agent systems', title: 'VirT-Lab',
     subtitle: 'A testbed for exploring how teams coordinate.',
-    summary: 'Building the infrastructure behind customizable, spatial simulations of LLM agent teams.',
+    summary: 'I built the backend that schedules agent actions and keeps simulated teams in sync as they move and communicate.',
     meta: '2025 · Collaborative research · UIST demo', role: 'Backend development & performance optimization',
     advisor: 'Dr. Diego Gómez-Zará · RINGZ Lab', period: 'Summer 2025', status: 'UIST Adjunct 2025 · Extended manuscript in submission',
     question: 'How can researchers create and inspect dynamic teams of LLM agents?',
@@ -110,11 +110,11 @@ export const projects = [
     teaser: {src:'assets/hidden-in-plain-text-teaser-v2.png',width:1774,height:887,alt:'AI-generated method overview: social-web carriers enter ingestion, sparse or dense retrieval, and generation. Optional sanitization and normalization act at ingestion; attribution gating acts at generation. Evaluation covers attack success, rank shift, answer utility, and latency.',caption:'Method overview (AI-generated) · Social-web carriers, RAG defenses, and evaluation.'},
     id: 'hidden-in-plain-text', number: '05', category: 'NLP · Trustworthy AI', title: 'Hidden-in-Plain-Text',
     subtitle: 'Testing the boundary between evidence and instruction.',
-    summary: 'A reproducible benchmark for indirect prompt injection in social-web retrieval-augmented generation.',
-    meta: '2026 · Coauthored research · WWW', role: 'Coauthor', advisor: 'Coauthored with Ziqi Wei', period: '2026', status: 'The ACM Web Conference 2026',
+    summary: 'With Ziqi Wei, I developed a benchmark to test whether instructions embedded in retrieved web content change an AI system’s answer.',
+    meta: 'First author · WWW 2026', role: 'First author', advisor: 'Coauthored with Ziqi Wei', period: '2026', status: 'The ACM Web Conference 2026',
     question: 'What happens when retrieved social-web content tries to become an instruction?',
     context: 'Retrieval-augmented generation can give language models useful context, but it also brings untrusted text into the answer pipeline. Hidden-in-Plain-Text introduces OpenRAG-Soc to evaluate indirect prompt injection and retrieval poisoning in that setting.',
-    contribution: 'I coauthored this work with Ziqi Wei. The joint contribution is a benchmark and evaluation harness for comparing web-native attack carriers, retrievers, and mitigations. The public materials do not specify an individual implementation split, so the system contributions below are attributed to the joint work.',
+    contribution: 'As first author, I worked with Ziqi Wei on OpenRAG-Soc. We developed the benchmark and evaluation harness to measure how retrieval and defense choices affect answer quality and response time.',
     methods: [
       ['Vary the retrieval path', 'Pair a social-web corpus with interchangeable sparse and dense retrievers.'],
       ['Evaluate mitigations', 'Compare HTML/Markdown sanitization, Unicode normalization, and attribution-gated answering.'],
@@ -131,8 +131,8 @@ export const projects = [
     teaser: {src:'assets/consentdiff-teaser-v2.png',width:1774,height:887,alt:'AI-generated method overview: monthly policy and consent-UI snapshots feed parallel clause alignment and DOM-plus-screenshot classification. Policy claims map to observable UI predicates for weighted alignment comparisons. Mappings shown are illustrative.',caption:'Method overview (AI-generated) · Monthly snapshots, parallel analysis, and claim–UI alignment.'},
     id: 'consentdiff', number: '06', category: 'HCI · Privacy & user agency', title: 'ConsentDiff at Scale',
     subtitle: 'Connecting what a site promises to what people can do.',
-    summary: 'Longitudinal audits of changing privacy policies and the friction in consent interfaces.',
-    meta: '2026 · Single-author research · CHI EA', role: 'Sole author', advisor: 'Independent research', period: '2025–2026', status: 'CHI Extended Abstracts 2026',
+    summary: 'I designed a monthly audit that compares what a site’s privacy policy promises with the choices its consent banner offers.',
+    meta: 'Sole author · CHI EA 2026', role: 'Sole author', advisor: 'Independent research', period: '2025–2026', status: 'CHI Extended Abstracts 2026',
     question: 'Do changing privacy interfaces make the choices promised in policy accessible?',
     context: 'Privacy is experienced through both policy language and interface actions. ConsentDiff connects these two layers over time, rather than treating a policy document or a consent banner as an isolated snapshot.',
     contribution: 'As sole author, I developed the longitudinal audit approach connecting policy changes with observable consent-interface behavior. The work brings together semantic clause alignment, interface classification, and a weighted claim–UI alignment measure.',
@@ -154,11 +154,11 @@ export const projects = [
 projects.sort((a,b)=>Number(a.number)-Number(b.number));
 
 export const publications = [
-  {title:'Parallax',subtitle:'Addressing Grounding Asymmetry in Human–Agent Collaboration Across Conversation and Applications',authors:'Contribution · User research, interface & systems development',venue:'In submission to CHI 2027',caseId:'parallax'},
-  {title:'From Prediction to Execution',subtitle:'A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI',authors:'Lead author · Tony (Haoze) Guo',venue:'In submission to CHI 2027',caseId:'prediction-to-execution'},
+  {title:'Parallax',subtitle:'Addressing Grounding Asymmetry in Human–Agent Collaboration Across Conversation and Applications',authors:'First author · Tony (Haoze) Guo',venue:'In submission to CHI 2027',caseId:'parallax'},
+  {title:'From Prediction to Execution',subtitle:'A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI',authors:'First author · Tony (Haoze) Guo',venue:'In submission to CHI 2027',caseId:'prediction-to-execution'},
   {title:'EnactiveCanvas',subtitle:'Spatial–Cognitive Mappings for Ill-Defined Design with AI: A Design Space and Its Instantiation in EnactiveCanvas',authors:'Contribution · System design, frontend & backend',venue:'In submission to CHI 2027',caseId:'enactivecanvas'},
-  {title:'ConsentDiff at Scale',subtitle:'Longitudinal Audits of Web Privacy Policy Changes and UI Frictions',authors:'Haoze Guo',venue:'CHI EA 2026',url:'https://doi.org/10.1145/3772363.3798570'},
-  {title:'Hidden-in-Plain-Text',subtitle:'A Benchmark for Social-Web Indirect Prompt Injection in RAG',authors:'Haoze Guo and Ziqi Wei',venue:'WWW 2026',url:'https://doi.org/10.1145/3774904.3792853'},
+  {title:'ConsentDiff at Scale',subtitle:'Longitudinal Audits of Web Privacy Policy Changes and UI Frictions',authors:'Sole author · Haoze Guo',venue:'CHI EA 2026',url:'https://doi.org/10.1145/3772363.3798570'},
+  {title:'Hidden-in-Plain-Text',subtitle:'A Benchmark for Social-Web Indirect Prompt Injection in RAG',authors:'Haoze Guo (first author) and Ziqi Wei',venue:'WWW 2026',url:'https://doi.org/10.1145/3774904.3792853'},
   {title:'VIRT-LAB',subtitle:'An AI-Powered System for Flexible, Customizable, and Large-scale Team Simulations',authors:'Mohammed Almutairi, Charles Chiang, Haoze Guo, et al.',venue:'UIST Adjunct 2025',url:'https://doi.org/10.1145/3746058.3758994'},
   {title:'Enabling User-Created Multi-Agent Simulations',subtitle:'Interactive and Customizable 2D Environments to Study Team Dynamics with LLM Agents',authors:'Mohammed Almutairi, Charles Chiang, Haoze Guo, et al.',venue:'NeurIPS SEA Workshop 2025',url:'https://openreview.net/forum?id=BX1BnepTZO'},
   {title:'Simulating Teams with LLM Agents',subtitle:'Interactive 2D Environments for Studying Human-AI Dynamics',authors:'Mohammed Almutairi, Charles Chiang, Haoze Guo, et al.',venue:'Preprint · In submission',url:'https://arxiv.org/abs/2510.08242'}

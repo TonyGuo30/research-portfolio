@@ -5,7 +5,7 @@ const keywords = {
   enactivecanvas:'HCI HAI human AI spatial creativity canvas frontend backend',
   'virt-lab':'AI agents multi-agent multiagent simulation teams coordination',
   'hidden-in-plain-text':'NLP RAG retrieval security trust prompt injection',
-  consentdiff:'HCI privacy consent agency policy audit sole author'
+  consentdiff:'HCI privacy consent agency policy audit sole author first author'
 };
 const normalize = value => String(value).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[–—-]/g,' ').replace(/\s+/g,' ').trim();
 export function searchProjects(projects, query) {
