@@ -39,17 +39,37 @@ export function caseStudy(p) {
   const brief=briefs[p.id];
   return `<article class="case-study case-compact case-editorial" data-project="${p.id}">
     <a class="back-link" href="#project-${p.id}"><span aria-hidden="true">←</span> All work</a>
-    <div class="case-heading"><div><p class="eyebrow">${p.number} / ${p.category}</p><h1 tabindex="-1">${p.title}</h1><p class="case-subtitle">${p.subtitle}</p></div>${projectMetadata(p)}</div>
-    <nav class="case-toc" aria-label="On this page">${[['question','Overview'],['contribution','Contribution'],['evidence','Evidence'],['next','Next question']].map(([id,label])=>`<a href="work/${p.id}/#case-${id}" data-section="case-${id}">${label}</a>`).join('')}<button type="button" class="details-toggle" aria-expanded="false">Show all details <span aria-hidden="true">＋</span></button></nav>
-${artifactViewer(p)}
-    <section class="case-overview" id="case-question"><p class="eyebrow">01 / The question</p><h2>${p.question}</h2><details class="case-detail background-detail"><summary>Why this matters</summary><p>${p.context}</p></details></section>
-
-    <section class="case-chapter" id="case-contribution"><div class="chapter-heading"><p class="eyebrow">02 / Contribution & method</p><h2>${p.id==='hidden-in-plain-text'?'A joint contribution':'My contribution'}</h2></div><p class="chapter-lead">${brief.role}</p><details class="case-detail role-detail"><summary>Role & scope</summary><p>${p.contribution}</p></details><div class="method-explorer" aria-label="Explore the approach">${p.methods.map(([title,description],i)=>`<details class="case-detail method-step"><summary><span class="step-number">0${i+1}</span><span class="step-title">${brief.steps[i]}</span><span class="step-action" aria-hidden="true">＋</span></summary><div class="step-body"><h3>${title}</h3><p>${description}</p></div></details>`).join('')}</div>${manuscriptGallery(p,'method')}</section>
-    <section class="case-chapter" id="case-evidence"><div class="chapter-heading"><p class="eyebrow">03 / Evidence</p><h2>What the work shows</h2></div><dl class="evidence-facts${!p.image?' facts-verbal':''}">${brief.facts.map(([value,label])=>`<div><dt>${label}</dt><dd>${value}</dd></div>`).join('')}</dl><p class="chapter-lead">${brief.takeaway}</p><p class="evidence-caveat">${brief.caveat}</p>${evidenceVisual(p)}${manuscriptGallery(p,'evidence')}<details class="case-detail study-detail"><summary>${p.results?'Explore the results & comparison table':'Explore the study & findings'}</summary><div class="detail-body"><p>${p.evidence}</p>${p.evidenceDetail?`<p>${p.evidenceDetail}</p>`:''}${resultTable(p)}</div></details><div class="evidence-links">${p.links.map(l=>external(l.url,l.label)).join('')}</div></section>
-    <section class="case-next-question" id="case-next"><p class="eyebrow">04 / The next question</p><h2>${p.questionNext}</h2><details class="case-detail"><summary>A direction to explore</summary><p>${p.evaluation}</p></details></section>
+    <header id="case-question" class="case-heading">
+      <div><p class="eyebrow">${p.category}</p><h1 tabindex="-1">${p.title}</h1>
+        <dl class="case-abstract"><div><dt>My contribution</dt><dd>${p.summary}</dd></div>
+        <div><dt>${p.id==='virt-lab'||p.id==='enactivecanvas'?'Team finding':'Research finding'}</dt><dd>${brief.takeaway}</dd></div></dl>
+      </div>${projectMetadata(p)}
+    </header>
+    <nav class="case-toc" aria-label="On this page">${[['question','Overview'],['evidence','Evidence'],['contribution','Method'],['next','Next question']].map(([id,label])=>`<a href="work/${p.id}/#case-${id}" data-section="case-${id}">${label}</a>`).join('')}</nav>
+    ${artifactViewer(p)}
+    <section class="case-chapter" id="case-evidence">
+      <div class="chapter-heading"><p class="eyebrow">Evidence</p><h2>${brief.evidenceTitle}</h2></div>
+      ${evidenceVisual(p)}
+      <p class="study-prose">${p.evidence}</p>
+      ${p.evidenceDetail?`<p class="study-prose">${p.evidenceDetail}</p>`:''}
+      <p class="evidence-caveat">${brief.caveat}</p>
+      ${manuscriptGallery(p,'evidence')}
+      ${p.results?`<details class="case-detail study-detail"><summary>Full results table and prediction errors</summary>${resultTable(p)}</details>`:''}
+      <div class="evidence-links">${p.links.filter(l=>!l.url.startsWith('assets/')).map(l=>external(l.url,l.label)).join('')}</div>
+    </section>
+    <section class="case-chapter" id="case-contribution">
+      <div class="chapter-heading"><p class="eyebrow">Research question &amp; method</p><h2>${p.question}</h2></div>
+      <p class="study-prose">${p.contribution}</p>
+      ${p.teaser?`<figure class="method-teaser">${projectVisual(p)}<figcaption>${p.teaser.caption}</figcaption></figure>`:''}
+      ${manuscriptGallery(p,'method')}
+      <details class="case-detail method-notes"><summary>${brief.methodLabel}</summary>
+        <div class="detail-body"><p>${p.context}</p><ol>${p.methods.map(([title,description])=>`<li><strong>${title}</strong><p>${description}</p></li>`).join('')}</ol></div>
+      </details>
+    </section>
+    <section class="case-next-question" id="case-next"><p class="eyebrow">Next question</p><h2>${p.questionNext}</h2><p class="study-prose">${p.evaluation}</p></section>
     <details class="case-detail source-detail"><summary>Sources & attribution</summary><p class="source-note">${p.source}</p></details>
     <nav class="case-navigation" aria-label="Case study navigation"><a class="text-link" href="#project-${p.id}">← Back to selected work</a><a class="next-project-link" href="work/${next.id}/"><span class="eyebrow">Next research story</span><strong>${next.title}</strong><span class="next-project-subtitle">${next.subtitle}</span><span class="next-project-arrow" aria-hidden="true">↗</span></a></nav>
-  </article>`;
+  </article>`.replace(/^[ \t]+$/gm, '');
 }
 
 export const projectList=projects.map(projectRow).join('');

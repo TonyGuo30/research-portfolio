@@ -159,22 +159,7 @@ export function initializeInteractions(projects) {
       status.textContent = 'Copy unavailable. Select the email address above to copy it.';
     }
   });
-  const detailToggle=document.querySelector('.details-toggle');
-  const caseDetails=[...document.querySelectorAll('.case-detail')];
-  if(detailToggle){
-    const syncDetails=()=>{
-      const allOpen=caseDetails.every(detail=>detail.open);
-      detailToggle.setAttribute('aria-expanded',String(allOpen));
-      detailToggle.innerHTML=allOpen ? 'Collapse details <span aria-hidden="true">−</span>' : 'Show all details <span aria-hidden="true">＋</span>';
-      refreshReading();
-    };
-    detailToggle.addEventListener('click',()=>{
-      const open=!caseDetails.every(detail=>detail.open);
-      caseDetails.forEach(detail=>{detail.open=open;});
-      syncDetails();
-    });
-    caseDetails.forEach(detail=>detail.addEventListener('toggle',syncDetails));
-  }
+  document.querySelectorAll('.case-detail').forEach(detail=>detail.addEventListener('toggle',refreshReading));
   initializeViewer();
   addEventListener('scroll', refreshReading, {passive:true});
   addEventListener('resize', refreshReading, {passive:true});

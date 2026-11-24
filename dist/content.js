@@ -8,7 +8,7 @@ export const projects = [
     metadata: [{label:'Role',value:'First author'},{label:'Focus',value:'LLM evaluation · Predictive HCI'},{label:'Scope',value:'Six LLMs + constrained formalizers'},{label:'Status',value:'In submission to CHI 2027'}],
     question: 'What evidence should we require before treating an AI-produced predictive model as usable?',
     context: 'Models such as Fitts’ law, Hick–Hyman, and KLM can help analysts reason about interface performance. An LLM can produce a convincing estimate while choosing an unsuitable model, inventing missing inputs, or constructing a specification that cannot execute. This work evaluates those intermediate decisions separately from the final number.',
-    contribution: 'I am the first author of this research on LLM-assisted formalization in predictive HCI. The central contribution is an evaluation methodology that makes family selection, information recovery, representation validation, and deterministic execution separately inspectable. The study connects these diagnostics to implications for how AI-assisted modeling tools should be designed and evaluated.',
+    contribution: 'I scored four decisions separately: choosing a model family, recovering the required inputs, producing a valid specification, and executing it. This let me locate failures that a single prediction-error score would hide.',
     methods: [
       ['Separate the stages', 'Distinguish direct numerical prediction from a hybrid pipeline in which the LLM proposes a structured specification and an independent validator and calculator govern execution.'],
       ['Test distinct condition sets', 'Evaluate 600 direct-prediction conditions across six families and five representations, plus a separate 300-condition formalization set spanning four families.'],
@@ -43,9 +43,8 @@ export const projects = [
       ['Read back meaning with provenance', 'Transform raw interactions and artifact states into interaction episodes and semantic observations. Preserve the distinction between observed activity, explicit human interpretations, and uncertain agent inferences.'],
       ['Ground selectively and explain the choice', 'Assess evidence relevance, select admissible observations, and check whether the evidence is sufficient. Preserve a trace back to the underlying work, and request clarification or further work when needed.']
     ],
-    evidence: 'A formative study with five researchers informed the Grounding Loop: Route, Work, Read Back, and Ground. The team then conducted an exploratory evaluation with twelve researchers: eight in Literature Synthesis and four in Network Analysis. Each participant used both a conventional CLI baseline and Parallax, with the same model and task-relevant tools.',
-    evidenceDetail: 'Mean System Usability Scale scores were 74.38 for Parallax versus 59.38 for the baseline in Literature Synthesis, and 86.88 versus 47.50 in Network Analysis. Participants valued continuity and provenance, while intervention timing and repair remained less consistent. These are descriptive findings from small, separate cohorts; the paper does not report inferential significance tests.',
-    questionNext: 'How much context should an agent retain—and when should it ask the person to resolve an evidence gap?',
+    evidence: 'Five researchers informed the original design. In the later evaluation, eight researchers used Parallax for literature synthesis and four used it for network analysis.',
+    questionNext: 'When an agent misreads a researcher’s actions, how can the researcher correct its understanding?',
     evaluation: 'Observable activity does not fully reveal intent: opening a paper may signal uncertainty, and changing a visualization may be exploration rather than commitment. Future work should make grounding repair easier and examine what to capture, retain, or exclude across longer workflows and more applications.',
     links: [{label:'Explore the Grounding Loop',url:'assets/parallax-overview.png'}],
     image:{src:'assets/parallax-overview.png',width:1740,height:874,alt:'Parallax Figure 1: grounding asymmetry between conversation and applications, the Route–Work–Read Back–Ground loop, and its Literature Synthesis and Network Analysis instantiations.'},
@@ -64,19 +63,19 @@ export const projects = [
     metadata:[{label:'Role',value:'System design · Frontend & backend'},{label:'Stack',value:'JavaScript · Fabric.js · Python · Flask'},{label:'Focus',value:'Spatial interaction · Human–AI co-creation'},{label:'Status',value:'In submission to CHI 2027'}],
     question: 'How can spatial interaction support design when the problem—and the designer’s intent—is still taking shape?',
     context: 'Ill-defined design problems evolve as people explore potential solutions. EnactiveCanvas turns a two-dimensional workspace into a way to organize fragments, revisit alternatives, and communicate context to an LLM. The system instantiates a spatial–cognitive design space connecting design cognition with spatial properties and actions.',
-    contribution: 'My primary contribution was system design across the frontend and backend. I contributed to the interactive web system that connects canvas operations and note state with context-aware AI generation. This contribution centers on the system; the design-space framework and user-study findings described here belong to the collaborative research.',
+    contribution: 'I helped connect both sides of note selection. The frontend records which notes a designer selects and shows the active context. The backend uses that note state to assemble the context for the next generation request.',
     methods:[
       ['Represent an evolving workspace', 'The HTML/CSS/JavaScript frontend uses Fabric.js for notes, connections, dragging, selection, panning, and zooming. Note state includes content, position, type, and organizational properties for layers, ratings, and sub-canvases.'],
       ['Translate spatial actions into AI requests', 'The Python/Flask backend combines operation-specific prompts with note content, intent, and spatial parameters. Direction and distance encode the perspective and degree of an idea variation.'],
       ['Make context part of the interaction', 'Visible notes or an explicit selection supply context for generation. Separate operations support divergence, convergence, merging, question answering, and reflection; generated text returns to the canvas as notes or responses.']
     ],
-    evidence: 'The team evaluated EnactiveCanvas in a comparative lab study with 23 participants and a two-week deployment with three expert designers. Qualitative findings suggest support for divergent exploration, reflection, ownership, and intent formation. Participants also reported greater effort, a learning cost, and difficulty synthesizing a final proposal.',
-    evidenceDetail: 'ChatGPT received higher ratings for immersion and whether the results were worth the effort. The study did not find differences in the remaining creativity-support dimensions, user-experience measures, or expert ratings of design outcomes. These findings do not establish that EnactiveCanvas improves creativity.',
+    evidence: 'The team compared the canvas with chat in a lab study with 23 participants. Three expert designers also used it over two weeks. The participant canvases below show how people branched, grouped, and revisited ideas.',
+    evidenceDetail: 'Participants rated ChatGPT higher for immersion and for whether the result was worth the effort.',
     questionNext: 'How can a spatial workspace help people move from expanding ideas to a coherent outcome?',
     evaluation: 'A next design iteration could connect spatial exploration to focused synthesis while preserving unfinished branches and user ownership. Evaluating longer-term use would help distinguish first-use friction from sustained benefits; the existing study does not isolate spatial interaction from other system differences.',
     links:[{label:'Explore the system figure',url:'assets/enactivecanvas-overview.png'}],
     image:{src:'assets/enactivecanvas-overview.png',width:3877,height:2254,alt:'EnactiveCanvas Figure 1 showing the actual canvas interface, spatial idea variation, layered thinking pathways, and the human–AI context panel.'},
-    caption:'Figure 1 from the manuscript · the EnactiveCanvas interface and its spatial interaction mechanisms.',
+    caption:'Figure 1. A designer selects notes on the canvas. Their content becomes part of the next AI request, and the context panel shows the material in scope.',
     figures: [
       {id:'design-space',number:2,section:'method',title:'Mapping thought to space',src:'assets/enactivecanvas-design-space.png',width:1786,height:776,alt:'EnactiveCanvas Figure 2 maps ten spatial properties, including scale, boundary, distance, and orientation, to cognitive dimensions such as granularity, problem scope, semantic relatedness, and perspective.',caption:'The paper’s design space connects spatial properties to shifts in design cognition.',source:'Supplied EnactiveCanvas manuscript · Figure 2 · p. 6'},
       {id:'interaction-features',number:3,section:'method',title:'A vocabulary of spatial actions',src:'assets/enactivecanvas-interactions.png',width:1796,height:1242,alt:'EnactiveCanvas Figure 3 illustrates ten interaction features: intent, viewport context, follow-up questions, directional idea variation, divergence, convergence, merging, reflection, sub-canvases, and layers with ratings and connections.',caption:'Ten interaction features support context control, idea generation, reflection, and organization.',source:'Supplied EnactiveCanvas manuscript · Figure 3 · p. 9'},
@@ -98,10 +97,10 @@ export const projects = [
       ['Connect reasoning to action', 'Integrate LLM reasoning pipelines with the simulation engine and real-time communication infrastructure.'],
       ['Make behavior inspectable', 'Support a platform in which researchers can follow agent actions, conversations, and simulation records.']
     ],
-    evidence: 'The UIST 2025 demo paper documents the system. The extended preprint describes component ablations, a rescue-mission comparison with real teams, a 12-participant user study, and scaling evaluations. These are team-level studies, not claims of individual study ownership.',
+    evidence: 'The team tested rescue missions in environments of increasing complexity. The event records showed fewer exchanges between agents in more complex scenarios. In a separate comparison with human teams, coordination and emerging leadership were weaker among agents.',
     questionNext: 'When do patterns in an agent simulation tell us something meaningful about human teams?',
     evaluation: 'Simulation realism and human-team validity need to be evaluated separately from software performance. More realistic-looking behavior alone does not establish that a simulation predicts human collaboration.',
-    links: [{label:'UIST paper',url:'https://doi.org/10.1145/3746058.3758994'},{label:'Extended preprint',url:'https://arxiv.org/abs/2510.08242'},{label:'SEA workshop paper',url:'https://openreview.net/forum?id=BX1BnepTZO'}],
+    links: [{label:'UIST paper',url:'https://doi.org/10.1145/3746058.3758994'},{label:'Scaling study and discussion',url:'https://arxiv.org/html/2510.08242v1#S6.SS1'},{label:'SEA workshop paper',url:'https://openreview.net/forum?id=BX1BnepTZO'}],
     image:{src:'assets/virt-lab-overview.png',width:2066,height:940,alt:'VirT-Lab Figure 1: natural-language scenario initialization, agents and entities in a 2D environment, a simulation manager coordinating decisions and updates, and team and agent performance outputs.'},
     caption: 'Figure 1 from the extended preprint · scenario setup, agent–environment interaction, and simulation outcomes.',
     source: 'Individual contribution: supplied CV. System and evaluation scope: UIST paper and extended preprint. Teaser figure: Simulating Teams with LLM Agents: Interactive 2D Environments for Studying Human–AI Dynamics, supplied arXiv:2510.08242v1, Figure 1.'
@@ -120,10 +119,10 @@ export const projects = [
       ['Evaluate mitigations', 'Compare HTML/Markdown sanitization, Unicode normalization, and attribution-gated answering.'],
       ['Measure the trade-offs', 'Track answer-time attacks, retrieval rank shifts, utility, and latency within an end-to-end evaluation.']
     ],
-    evidence: 'The paper specifies a compact, reproducible benchmark-and-harness. Its value is a consistent comparison across ingestion, retrieval, and generation; this portfolio does not add unverified benchmark scores.',
+    evidence: 'Table 1 reports the percentage of queries for which the model followed an embedded instruction. Each content type receives equal weight in the average.',
     questionNext: 'How can an agent use retrieved evidence without treating that evidence as authority?',
     evaluation: 'A useful extension would connect pipeline-level defenses with interfaces that help people inspect attribution and understand when a source has influenced an answer. This is a prospective research direction.',
-    links: [{label:'Read paper',url:'https://doi.org/10.1145/3774904.3792853'},{label:'arXiv version',url:'https://arxiv.org/abs/2601.10923'}],
+    links: [{label:'Read paper',url:'https://doi.org/10.1145/3774904.3792853'},{label:'Results in Table 1',url:'https://arxiv.org/html/2601.10923v2#S5'}],
     caption: 'Conceptual evaluation pipeline based on the paper; no benchmark results are depicted.',
     source: 'Title, authors, venue, and method: arXiv 2601.10923 and the related ACM DOI.'
   },
@@ -141,10 +140,10 @@ export const projects = [
       ['Inspect the interface', 'Combine DOM signals and screenshot cues to classify consent-UI patterns.'],
       ['Connect claims to actions', 'Map policy claims to observable predicates and compare alignment across time, regions, and verticals.']
     ],
-    evidence: 'The published extended abstract reports continuing policy churn and higher claim–UI alignment where rejection is visible and lower-friction. The public paper is the source for the measurement scope and findings.',
+    evidence: 'I followed 2,400 domains across nine monthly waves. For each snapshot, I compared policy claims with observable choices such as the visibility of rejection and the steps it required.',
     questionNext: 'How can longitudinal audits distinguish a clearer interface from a change that truly improves user agency?',
     evaluation: 'Observable interface alignment provides one form of evidence. Understanding whether people can recognize and exercise their choices also calls for user-centered evaluation. This is a proposed extension of the audit.',
-    links: [{label:'Read paper',url:'https://doi.org/10.1145/3772363.3798570'},{label:'arXiv version',url:'https://arxiv.org/abs/2512.04316'}],
+    links: [{label:'Read paper',url:'https://doi.org/10.1145/3772363.3798570'},{label:'Effect sizes in Section 4.2',url:'https://arxiv.org/html/2512.04316v7#S4.SS2'}],
     caption: 'Conceptual audit workflow based on the paper; not a measured time series.',
     source: 'Title, authorship, venue, and method: arXiv 2512.04316 and the related ACM DOI.'
   }

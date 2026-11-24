@@ -12,13 +12,11 @@ export function initializeCaseStudy() {
       ['x','y','width','height'].forEach((attr,i)=>svg.querySelector('clipPath rect').setAttribute(attr,bounds[i]));
       title.textContent=index===0?originalTitle:`Detail: ${button.textContent.trim()}. ${button.dataset.caption}`;
       viewer.querySelector('.artifact-caption').textContent=button.dataset.caption;
-      viewer.querySelector('.artifact-footnote').textContent=index===0?'Original manuscript figure · Select a focus to inspect':'Detail of the original figure · Full figure restores context';
       if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
         svg.getAnimations().forEach(animation=>animation.cancel());
         svg.animate([{opacity:.35,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'ease-out'});
       }
     }));
-    viewer.querySelector('.artifact-footnote').textContent='Original manuscript figure · Select a focus to inspect';
     viewer.classList.add('is-interactive');
   });
   document.querySelectorAll('.evidence-explorer').forEach(explorer=>{

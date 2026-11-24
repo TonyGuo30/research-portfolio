@@ -1,45 +1,39 @@
-// Concise reading layer. Full, source-backed narratives remain in content.js.
+// Findings appear beside the author's contribution before readers enter the figures.
 export const briefs = {
   parallax: {
-    role: 'I translated formative research into the interface and systems for task tracking, semantic read-back, and selective grounding.',
-    takeaway: 'Researchers valued continuity and provenance; deciding when to intervene and how to repair context remained harder.',
-    facts: [['5', 'Formative-study researchers'], ['12', 'Exploratory-evaluation researchers'], ['2', 'Research workflows']],
-    caveat: 'Team-level findings from small, separate cohorts; no inferential significance tests.',
-    steps: ['Route the work', 'Read back evidence', 'Ground selectively']
+    takeaway: 'Researchers valued being able to trace an answer back to their work. Knowing when to intervene and how to correct a misunderstanding remained difficult.',
+    evidenceTitle: 'How did it feel to resume a task across tools?',
+    methodLabel: 'Task tracking and evidence selection',
+    caveat: 'The two cohorts were small and separate. The scores are descriptive means.'
   },
   'prediction-to-execution': {
-    role: 'As first author, I developed the evaluation methodology for inspecting model selection, formalization, and execution separately.',
-    takeaway: 'Selecting the right model does not guarantee an executable specification. Coverage matters alongside prediction error.',
-    facts: [['6', 'LLM formalizers'], ['300', 'Formalization conditions'], ['64.7–96.0%', 'Execution coverage']],
-    caveat: 'Benchmark findings do not establish behavioral validity or benefit for practitioners.',
-    steps: ['Separate the stages', 'Vary the conditions', 'Test transfer']
+    takeaway: 'Llama 3.3 70B chose the right model family in 91.3% of conditions and produced a runnable specification in 64.7%.',
+    evidenceTitle: 'Choosing a model and getting it to run',
+    methodLabel: 'Benchmark design and transfer tests',
+    caveat: 'The benchmark checks computational correctness. Its reference targets do not measure how well a model predicts real users.'
   },
   enactivecanvas: {
-    role: 'I contributed frontend and backend system design, connecting spatial canvas actions with context-aware AI generation.',
-    takeaway: 'The studies suggest support for exploration and ownership, alongside greater effort and difficulty reaching a final proposal.',
-    facts: [['23', 'Lab-study participants'], ['3', 'Expert designers in deployment'], ['2 weeks', 'Deployment duration']],
-    caveat: 'Team-level studies; the findings do not establish improved creativity. My contribution focused on the system.',
-    steps: ['Represent the workspace', 'Translate spatial actions', 'Make context visible']
+    takeaway: 'Participants described finding more directions to explore on the canvas. Bringing those branches together into a final proposal took more effort.',
+    evidenceTitle: 'From exploring ideas to choosing one',
+    methodLabel: 'Canvas state and the AI request',
+    caveat: 'These are findings from the team’s studies. Expert ratings of design outcomes showed no detected difference between conditions.'
   },
   'virt-lab': {
-    role: 'I led backend development and optimization for event scheduling, LLM reasoning, and real-time agent coordination.',
-    takeaway: 'An interactive testbed for configuring agent teams and inspecting their behavior in changing 2D environments.',
-    facts: [['2D', 'Interactive environments'], ['12', 'Participants in the preprint study'], ['UIST ’25', 'Published system demo']],
-    caveat: 'Evaluation is team-level work. Simulation realism alone does not establish validity for human teams.',
-    steps: ['Schedule events', 'Connect reasoning to action', 'Inspect team behavior']
+    takeaway: 'In the team’s scaling study, agents exchanged fewer messages as the simulated rescue scenario became more complex.',
+    evidenceTitle: 'What the simulation records revealed',
+    methodLabel: 'Event scheduling and agent coordination',
+    caveat: 'The communication pattern was observed in simulated teams. Its generality to human teams remains an open question.'
   },
   'hidden-in-plain-text': {
-    role: 'As first author, I worked with Ziqi Wei to develop OpenRAG-Soc and its evaluation harness.',
-    takeaway: 'One evaluation pipeline connects attack carriers, retrieval choices, and defenses to their utility and latency trade-offs.',
-    facts: [['Sparse + dense', 'Retrieval paths'], ['3', 'Mitigation approaches'], ['End to end', 'Ingestion → retrieval → generation']],
-    caveat: 'The evaluation covers the retrieval pipelines and defenses included in OpenRAG-Soc.',
-    steps: ['Vary retrieval', 'Compare defenses', 'Measure trade-offs']
+    takeaway: 'Across the tested content types, the rate at which models followed embedded instructions fell from 24.9% at baseline to 4.7% with the combined defenses.',
+    evidenceTitle: 'How often did the model follow a web page’s instructions?',
+    methodLabel: 'Benchmark design and measurements',
+    caveat: 'The estimates apply to the content types, models, and retrieval settings evaluated in OpenRAG-Soc.'
   },
   consentdiff: {
-    role: 'As sole author, I connected policy changes with observable consent-interface behavior through a longitudinal audit.',
-    takeaway: 'The paper reports higher claim–UI alignment where rejection is visible and requires less friction.',
-    facts: [['Monthly', 'Site observations'], ['Policy + UI', 'Connected evidence'], ['CHI EA ’26', 'Published extended abstract']],
-    caveat: 'Interface alignment is evidence about available choices; user-centered evaluation is needed to assess agency.',
-    steps: ['Observe over time', 'Inspect the interface', 'Connect claims to actions']
+    takeaway: 'Sites with a visible “Reject all” button scored 0.12 points higher on alignment between policy promises and interface choices.',
+    evidenceTitle: 'Can a visitor act on a policy promise?',
+    methodLabel: 'Monthly snapshots and the alignment score',
+    caveat: 'The audit measures an association between observable interface features and policy alignment. It does not measure whether visitors felt in control.'
   }
 };
