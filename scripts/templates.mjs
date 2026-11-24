@@ -1,3 +1,4 @@
+import { homeCover, coverCaption } from './home-covers.mjs';
 import { projects, publications } from '../dist/content.js';
 import { briefs } from './case-briefs.mjs';
 import { artifactViewer, demoWalkthrough, evidenceVisual, manuscriptGallery } from './case-visuals.mjs';
@@ -16,8 +17,9 @@ const diagram = (id) => {
 function projectVisual(p) {
   const media = p.image || p.teaser;
   if (!media) return diagram(p.id);
-  return `<div class="card-media"><a class="case-image" href="work/${p.id}/" aria-label="Read ${p.title} case study"><img class="paper-figure" src="${media.src}" width="${media.width}" height="${media.height}" alt="${media.alt}" loading="lazy" decoding="async"></a>
-    <a class="card-expand paper-figure-link" data-project="${p.id}" href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="Expand ${p.title} figure">Expand figure ${arrow}</a></div>`;
+  const cover = homeCover(p);
+  return `<div class="card-media"><a class="case-image" href="work/${p.id}/" aria-label="Read ${p.title} case study">${cover || `<img class="paper-figure" src="${media.src}" width="${media.width}" height="${media.height}" alt="${media.alt}" loading="lazy" decoding="async">`}</a>
+    <a class="card-expand paper-figure-link" data-project="${p.id}" href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="Expand ${p.title} figure">${cover?'View paper figure':'Expand figure'} ${arrow}</a></div>`;
 }
 
 function projectMetadata(p) {
@@ -32,7 +34,7 @@ function resultTable(p) {
 }
 
 function projectRow(p) {
-  return `<article class="project-row" id="project-${p.id}"><figure class="project-visual">${projectVisual(p)}<figcaption class="diagram-caption">${p.teaser?.caption || p.caption}</figcaption></figure><div class="project-summary"><p class="eyebrow">${p.number} / ${p.category}</p><h3><a href="work/${p.id}/">${p.title}</a></h3><p class="subtitle">${p.subtitle}</p><p class="summary">${p.summary}</p><a class="text-link" href="work/${p.id}/" aria-label="Read ${p.title} case study">Read case study ${arrow}</a><p class="project-meta">${p.meta}</p></div></article>`;
+  return `<article class="project-row" id="project-${p.id}"><figure class="project-visual">${projectVisual(p)}<figcaption class="diagram-caption">${coverCaption(p) || p.teaser?.caption || p.caption}</figcaption></figure><div class="project-summary"><p class="eyebrow">${p.number} / ${p.category}</p><h3><a href="work/${p.id}/">${p.title}</a></h3><p class="subtitle">${p.subtitle}</p><p class="summary">${p.summary}</p><a class="text-link" href="work/${p.id}/" aria-label="Read ${p.title} case study">Read case study ${arrow}</a><p class="project-meta">${p.meta}</p></div></article>`;
 }
 
 const related = {
@@ -58,7 +60,6 @@ export function caseStudy(p) {
       </div>${projectMetadata(p)}
     </header>
     <nav class="case-toc" aria-label="On this page">${[['question','Overview'],['evidence','Evidence'],['contribution','Method'],['next','Next question']].map(([id,label])=>`<a href="work/${p.id}/#case-${id}" data-section="case-${id}">${label}</a>`).join('')}</nav>
-    ${demoWalkthrough(p)}
     ${p.image ? artifactViewer(p) : ''}
     <section class="case-chapter" id="case-evidence">
       <div class="chapter-heading"><p class="eyebrow">Evidence</p><h2>${brief.evidenceTitle}</h2></div>
@@ -81,6 +82,7 @@ export function caseStudy(p) {
     </section>
     <section class="case-next-question" id="case-next"><p class="eyebrow">Next question</p><h2>${p.questionNext}</h2><p class="study-prose">${p.evaluation}</p></section>
     <details class="case-detail source-detail"><summary>Sources & attribution</summary><p class="source-note">${p.source}</p></details>
+    ${demoWalkthrough(p)}
     <nav class="case-navigation" aria-label="Case study navigation"><a class="text-link" href="#project-${p.id}">← Back to selected work</a><a class="next-project-link" href="work/${next.id}/"><img src="${preview.src}" alt="" width="${preview.width}" height="${preview.height}" loading="lazy"><span class="related-copy"><span class="eyebrow">Related work</span><strong>${next.title}</strong><span class="next-project-subtitle">${connection}</span></span><span class="next-project-arrow" aria-hidden="true">↗</span></a></nav>
   </article>`.replace(/^[ \t]+$/gm, '');
 }
