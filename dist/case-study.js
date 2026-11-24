@@ -5,18 +5,49 @@ export function initializeCaseStudy() {
     const title=svg.querySelector('title');
     const originalTitle=title.textContent;
     const buttons=[...viewer.querySelectorAll('[data-figure-view]')];
-    buttons.forEach((button,index)=>button.addEventListener('click',()=>{
+    const clip = svg.querySelector('clipPath rect');
+    const clipUrl = new URL(location.href);
+    clipUrl.hash='figure-crop';
+    svg.querySelector('image').setAttribute('clip-path',`url("${clipUrl.href}")`);
+    let frame;
+    function setBounds(bounds) {
+      svg.setAttribute('viewBox',bounds.join(' '));
+      ['x','y','width','height'].forEach((attr,i)=>clip.setAttribute(attr,bounds[i]));
+    }
+    function focusRegion(index) {
+      const button = buttons[index];
+      cancelAnimationFrame(frame);
+      const start = svg.getAttribute('viewBox').split(' ').map(Number);
+      const end = button.dataset.figureView.split(' ').map(Number);
+      viewer.classList.toggle('is-focused',index!==0);
       buttons.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-      svg.setAttribute('viewBox',button.dataset.figureView);
-      const bounds=button.dataset.figureView.split(' ');
-      ['x','y','width','height'].forEach((attr,i)=>svg.querySelector('clipPath rect').setAttribute(attr,bounds[i]));
-      title.textContent=index===0?originalTitle:`Detail: ${button.textContent.trim()}. ${button.dataset.caption}`;
+      title.textContent = index===0 ? originalTitle : button.textContent;
       viewer.querySelector('.artifact-caption').textContent=button.dataset.caption;
-      if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-        svg.getAnimations().forEach(animation=>animation.cancel());
-        svg.animate([{opacity:.35,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'ease-out'});
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setBounds(end);
+        return;
       }
-    }));
+      const began = performance.now();
+      function draw(now) {
+        const t = Math.min(1,Math.max(0,(now-began)/260));
+        const ease = 1-(1-t)**3;
+        setBounds(t===1 ? end : start.map((n,i)=>n+(end[i]-n)*ease));
+        if (t<1) frame=requestAnimationFrame(draw);
+      }
+      frame=requestAnimationFrame(draw);
+    }
+    buttons.forEach((button,i)=>button.addEventListener('click',()=>focusRegion(i)));
+    viewer.querySelectorAll('[data-region]').forEach(region=>{
+      function activate() {
+        const index = Number(region.dataset.region);
+        buttons[index].focus({preventScroll:true});
+        focusRegion(index);
+      }
+      region.addEventListener('click',activate);
+      region.addEventListener('keydown',event=>{
+        if(event.key==='Enter'||event.key===' ') {event.preventDefault();activate();}
+      });
+    });
     viewer.classList.add('is-interactive');
   });
   document.querySelectorAll('.evidence-explorer').forEach(explorer=>{

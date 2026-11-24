@@ -1,5 +1,15 @@
 // Figure regions are normalized bounds on the supplied, unmodified manuscript images.
 const lenses = {
+  'hidden-in-plain-text': [
+    ['Retrieved content',[.01,.1,.27,.78],'The model receives source material retrieved from the web.'],
+    ['Evaluation pipeline',[.30,.1,.47,.79],'OpenRAG-Soc compares retrieval and defense settings on the same queries.'],
+    ['Outcomes',[.80,.10,.19,.76],'The evaluation tracks answer behavior, retrieval rank, answer quality, and latency.']
+  ],
+  consentdiff: [
+    ['Monthly snapshots',[.01,.12,.33,.75],'Each month pairs the policy text with the consent interface visible on the site.'],
+    ['Parallel analysis',[.36,.12,.31,.75],'Policy clauses and interface choices are tracked separately over time.'],
+    ['Claim and choice',[.70,.12,.29,.75],'The audit pairs a promise such as easy rejection with a visible way to reject.']
+  ],
   parallax: [
     ['Grounding asymmetry',[0,0,.31,.55],'The conversation misses interactions and artifact versions in specialized applications.'],
     ['Grounding Loop',[.33,0,.355,.62],'Route, Work, Read Back, and Ground connect conversational intent with application evidence.'],
@@ -27,10 +37,20 @@ export function manuscriptGallery(p, section) {
   return `<section class="manuscript-gallery" aria-label="${section==='method'?'Method figures':'Study artifacts'} from the paper"><div class="manuscript-gallery-heading"><h3>${section==='method'?'From the manuscript':'Canvases from the study'}</h3><span>Original figures · Click to inspect</span></div><div class="manuscript-grid">${figures.map(figure=>`<figure class="manuscript-figure" id="figure-${figure.id}"><a class="paper-figure-link manuscript-image" data-project="${p.id}" data-figure="${figure.id}" href="${figure.src}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} Figure ${figure.number}: ${figure.title}"><img src="${figure.src}" width="${figure.width}" height="${figure.height}" alt="${figure.alt}" loading="lazy" decoding="async"><span class="figure-zoom">Expand figure ↗</span></a><figcaption><span class="manuscript-source">${figure.source}</span><h4>${figure.title}</h4><p>${figure.caption}</p></figcaption></figure>`).join('')}</div></section>`;
 }
 export function artifactViewer(p) {
-  if (!p.image) return '';
-  const {width:w,height:h}=p.image;
-  const views=[['Full figure',[0,0,1,1],p.caption],...lenses[p.id]];
-  return `<section class="artifact-viewer" aria-label="Explore the manuscript figure"><div class="artifact-paper"><div class="artifact-topline"><span>FIGURE 01 / MANUSCRIPT</span><a class="paper-figure-link artifact-expand" data-project="${p.id}" href="${p.image.src}" target="_blank" rel="noopener noreferrer">Expand figure ↗</a></div><svg class="artifact-canvas" viewBox="0 0 ${w} ${h}" role="img" aria-labelledby="artifact-title"><title id="artifact-title">${p.image.alt}</title><defs><clipPath id="figure-crop"><rect width="${w}" height="${h}"/></clipPath></defs><image href="${p.image.src}" width="${w}" height="${h}" clip-path="url(work/${p.id}/#figure-crop)"/></svg></div><div class="artifact-inspector"><div class="artifact-controls" role="group" aria-label="Figure focus">${views.map(([label,box,caption],i)=>`<button type="button" data-figure-view="${box.map((v,j)=>Math.round(v*(j%2?h:w))).join(' ')}" data-caption="${caption}" aria-pressed="${i===0}">${label}</button>`).join('')}</div><p class="artifact-caption" aria-live="polite">${p.caption}</p></div></section>`;
+  const media = p.image || p.teaser;
+  const {width:w,height:h} = media;
+  const caption = media.caption || p.caption;
+  const views = [['Full figure',[0,0,1,1],caption], ...lenses[p.id]].map(([label,box,note])=>({
+    label, note, bounds:box.map((value,i)=>Math.round(value*(i%2?h:w)))
+  }));
+  const hotspots = views.slice(1).map(({label,bounds:[x,y,width,height]},i)=>
+    `<rect class="figure-region" data-region="${i+1}" role="button" aria-label="Focus on ${label}" tabindex="0" x="${x}" y="${y}" width="${width}" height="${height}" rx="7"><title>${label}</title></rect>`).join('');
+  return `<section class="artifact-viewer" aria-label="Explore the figure"><div class="artifact-paper">
+    <div class="artifact-topline"><span>${p.image?'MANUSCRIPT · FIGURE 1':'CONCEPTUAL TEASER'}</span><a class="paper-figure-link artifact-expand" data-project="${p.id}" href="${media.src}" target="_blank" rel="noopener noreferrer">Expand figure ↗</a></div>
+    <svg class="artifact-canvas" viewBox="0 0 ${w} ${h}" role="group" aria-labelledby="artifact-title"><title id="artifact-title">${media.alt}</title>
+      <defs><clipPath id="figure-crop"><rect width="${w}" height="${h}"/></clipPath></defs><image href="${media.src}" width="${w}" height="${h}" clip-path="url(work/${p.id}/#figure-crop)"/>
+      <g class="figure-regions">${hotspots}</g></svg></div>
+    <div class="artifact-inspector"><div class="artifact-controls" role="group" aria-label="Figure focus">${views.map(({label,bounds,note},i)=>`<button type="button" data-figure-view="${bounds.join(' ')}" data-caption="${note}" aria-pressed="${i===0}">${label}</button>`).join('')}</div><p class="artifact-caption" aria-live="polite">${caption}</p></div></section>`;
 }
 const bar=(label,value,suffix='%')=>`<div class="data-bar"><span>${label}</span><div class="bar-track" aria-hidden="true"><i style="--value:${value}%"></i></div><strong>${Number(value).toFixed(suffix ? 1 : 2)}${suffix}</strong></div>`;
 export function evidenceVisual(p){

@@ -1,4 +1,5 @@
-import { initializeCaseStudy } from './case-study.js?v=20261123-findings';
+import { initializeWorkNavigation } from './work-navigation.js?v=20261123-browse';
+import { initializeCaseStudy } from './case-study.js?v=20261123-browse';
 import { initializeArchive } from './archive.js?v=20261123-research';
 import { projects } from './content.js?v=20261123-findings';
 import { initializeInteractions } from './interactions.js?v=20261123-findings';
@@ -31,6 +32,7 @@ document.addEventListener('keydown',event=>{
 addEventListener('hashchange',closeMenu);
 initializeInteractions(projects);
 initializeArchive(projects);
+initializeWorkNavigation(projects);
 document.documentElement.classList.add('js-ready');
 
 initializeCaseStudy();

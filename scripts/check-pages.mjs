@@ -33,13 +33,16 @@ console.log(`Verified all ${projects.length} projects and complete case studies 
 // Guard figure bounds and static evidence fallbacks, including the GitHub Pages base.
 for (const project of projects) {
   const page=await readFile(new URL(`work/${project.id}/index.html`,root),'utf8');
-  if(project.image){
+  if(project.image || project.teaser){
+    const media = project.image || project.teaser;
     assert.ok(page.includes(`url(work/${project.id}/#figure-crop)`));
     const bounds=[...page.matchAll(/data-figure-view="([\d ]+)"/g)].map(match=>match[1].split(' ').map(Number));
     assert.equal(bounds.length,4);
+    const regions=[...page.matchAll(/data-region="(\d+)"/g)].map(match=>Number(match[1]));
+    assert.deepEqual(regions,[1,2,3], `Missing figure targets: ${project.id}`);
     for(const [x,y,w,h] of bounds){
       assert.ok(w>0 && h>0 && x>=0 && y>=0);
-      assert.ok(x+w<=project.image.width+1 && y+h<=project.image.height+1, `Out-of-bounds crop: ${project.id}`);
+      assert.ok(x+w<=media.width+1 && y+h<=media.height+1, `Out-of-bounds crop: ${project.id}`);
     }
   }
   assert.ok(!/class="chart-panel"[^>]* hidden/.test(page),'Charts must survive without JavaScript');

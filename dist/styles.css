@@ -455,3 +455,25 @@ html:not(.js-ready) .view-switch{display:none}
 }
 .banner-example {display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .banner-example span {font:12px var(--sans);border:1px solid #948a9b;padding:8px 12px;background:white;border-radius:4px}
+
+.folio-description h2 a,.project-summary h3 a,.index-preview h3 a {color:inherit;text-decoration:none}
+.project-summary h3 a:hover,.index-preview h3 a:hover,.folio-description h2 a:hover {text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em}
+.card-media {position:relative;background:white;padding:12px 12px 44px;border-radius:5px}
+.case-image {display:block}
+.card-media .card-expand {position:absolute;right:6px;bottom:1px;min-height:40px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:transparent;box-shadow:none;font:11px var(--sans)}
+.card-expand .arrow-icon {width:14px;height:14px}
+.figure-regions {display:none}
+.is-interactive:not(.is-focused) .figure-regions {display:inline}
+.figure-region {cursor:zoom-in;fill:#84708e;fill-opacity:.035;stroke:#795e84;stroke-opacity:.75;stroke-width:1.3;vector-effect:non-scaling-stroke}
+.figure-region:hover,.figure-region:focus-visible {fill-opacity:.16;stroke-opacity:1;stroke-width:2.5}
+.case-navigation .next-project-link {display:grid;grid-template-columns:clamp(105px,18vw,240px) minmax(0,1fr);gap:clamp(14px,3vw,42px);align-items:center}
+.next-project-link img {width:100%;height:auto;aspect-ratio:1.7;object-fit:cover;border:1px solid var(--line);border-radius:4px;background:#fff}
+.related-copy {display:grid;gap:9px}
+.next-project-link .related-copy strong {font-size:clamp(25px,4vw,56px);overflow-wrap:anywhere}
+.related-copy .next-project-subtitle {font-size:clamp(16px,1.8vw,22px)}
+@media(max-width:600px){
+  .case-navigation .next-project-link {grid-template-columns:80px minmax(0,1fr);padding-right:21px}
+  .next-project-link img {aspect-ratio:1;object-fit:cover}
+  .next-project-arrow {font-size:18px}
+  .card-expand.paper-figure-link {min-height:44px}
+}

@@ -13,10 +13,11 @@ const diagram = (id) => {
   return `<div class="diagram diagram-consent"><div class="diagram-top">Policy claims ↔ Observable choices</div><div class="diagram-flow">${node('Snapshot',['Monthly observations','Policy + interface'])}${flowArrow}${node('Align',['Clause changes','UI predicates'],true)}${flowArrow}${node('Audit',['Claim–UI alignment','Consent friction'])}</div><div class="timeline-strip"><span>t₁</span><i></i><span>t₂</span><i></i><span>t₃</span><i></i><span>tₙ</span></div><div class="diagram-bottom">Longitudinal comparison · No measured values depicted</div></div>`;
 };
 
-function projectVisual(p, detail=false) {
-  const media=p.image || p.teaser;
+function projectVisual(p) {
+  const media = p.image || p.teaser;
   if (!media) return diagram(p.id);
-  return `<a class="paper-figure-link" data-project="${p.id}" href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.title} figure at full size"><img class="paper-figure" src="${media.src}" width="${media.width}" height="${media.height}" alt="${media.alt}" loading="${detail?'eager':'lazy'}" decoding="async"><span class="figure-zoom">Expand figure ${arrow}</span></a>`;
+  return `<div class="card-media"><a class="case-image" href="work/${p.id}/" aria-label="Read ${p.title} case study"><img class="paper-figure" src="${media.src}" width="${media.width}" height="${media.height}" alt="${media.alt}" loading="lazy" decoding="async"></a>
+    <a class="card-expand paper-figure-link" data-project="${p.id}" href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="Expand ${p.title} figure">Expand figure ${arrow}</a></div>`;
 }
 
 function projectMetadata(p) {
@@ -31,11 +32,22 @@ function resultTable(p) {
 }
 
 function projectRow(p) {
-  return `<article class="project-row" id="project-${p.id}"><figure class="project-visual">${projectVisual(p)}<figcaption class="diagram-caption">${p.teaser?.caption || p.caption}</figcaption></figure><div class="project-summary"><p class="eyebrow">${p.number} / ${p.category}</p><h3>${p.title}</h3><p class="subtitle">${p.subtitle}</p><p class="summary">${p.summary}</p><a class="text-link" href="work/${p.id}/" aria-label="Read ${p.title} case study">Read case study ${arrow}</a><p class="project-meta">${p.meta}</p></div></article>`;
+  return `<article class="project-row" id="project-${p.id}"><figure class="project-visual">${projectVisual(p)}<figcaption class="diagram-caption">${p.teaser?.caption || p.caption}</figcaption></figure><div class="project-summary"><p class="eyebrow">${p.number} / ${p.category}</p><h3><a href="work/${p.id}/">${p.title}</a></h3><p class="subtitle">${p.subtitle}</p><p class="summary">${p.summary}</p><a class="text-link" href="work/${p.id}/" aria-label="Read ${p.title} case study">Read case study ${arrow}</a><p class="project-meta">${p.meta}</p></div></article>`;
 }
 
+const related = {
+  parallax: ['enactivecanvas', 'What if you could show the AI exactly which notes matter?'],
+  enactivecanvas: ['virt-lab', 'What changes when a team of AI agents shares the same spatial workspace?'],
+  'virt-lab': ['prediction-to-execution', 'How can we check whether a model’s proposed action will actually run?'],
+  'prediction-to-execution': ['hidden-in-plain-text', 'How do you trace an unreliable answer back to the evidence a model received?'],
+  'hidden-in-plain-text': ['consentdiff', 'How can an audit connect what a website says with what it actually does?'],
+  consentdiff: ['parallax', 'How can people trace an AI’s interpretation back to what they did on screen?']
+};
+
 export function caseStudy(p) {
-  const next=projects[(projects.indexOf(p)+1)%projects.length];
+  const [relatedId, connection] = related[p.id];
+  const next = projects.find(project => project.id === relatedId);
+  const preview = next.image || next.teaser;
   const brief=briefs[p.id];
   return `<article class="case-study case-compact case-editorial" data-project="${p.id}">
     <a class="back-link" href="#project-${p.id}"><span aria-hidden="true">←</span> All work</a>
@@ -46,7 +58,7 @@ export function caseStudy(p) {
       </div>${projectMetadata(p)}
     </header>
     <nav class="case-toc" aria-label="On this page">${[['question','Overview'],['evidence','Evidence'],['contribution','Method'],['next','Next question']].map(([id,label])=>`<a href="work/${p.id}/#case-${id}" data-section="case-${id}">${label}</a>`).join('')}</nav>
-    ${artifactViewer(p)}
+    ${p.image ? artifactViewer(p) : ''}
     <section class="case-chapter" id="case-evidence">
       <div class="chapter-heading"><p class="eyebrow">Evidence</p><h2>${brief.evidenceTitle}</h2></div>
       ${evidenceVisual(p)}
@@ -60,7 +72,7 @@ export function caseStudy(p) {
     <section class="case-chapter" id="case-contribution">
       <div class="chapter-heading"><p class="eyebrow">Research question &amp; method</p><h2>${p.question}</h2></div>
       <p class="study-prose">${p.contribution}</p>
-      ${p.teaser?`<figure class="method-teaser">${projectVisual(p)}<figcaption>${p.teaser.caption}</figcaption></figure>`:''}
+      ${p.teaser ? artifactViewer(p) : ''}
       ${manuscriptGallery(p,'method')}
       <details class="case-detail method-notes"><summary>${brief.methodLabel}</summary>
         <div class="detail-body"><p>${p.context}</p><ol>${p.methods.map(([title,description])=>`<li><strong>${title}</strong><p>${description}</p></li>`).join('')}</ol></div>
@@ -68,7 +80,7 @@ export function caseStudy(p) {
     </section>
     <section class="case-next-question" id="case-next"><p class="eyebrow">Next question</p><h2>${p.questionNext}</h2><p class="study-prose">${p.evaluation}</p></section>
     <details class="case-detail source-detail"><summary>Sources & attribution</summary><p class="source-note">${p.source}</p></details>
-    <nav class="case-navigation" aria-label="Case study navigation"><a class="text-link" href="#project-${p.id}">← Back to selected work</a><a class="next-project-link" href="work/${next.id}/"><span class="eyebrow">Next research story</span><strong>${next.title}</strong><span class="next-project-subtitle">${next.subtitle}</span><span class="next-project-arrow" aria-hidden="true">↗</span></a></nav>
+    <nav class="case-navigation" aria-label="Case study navigation"><a class="text-link" href="#project-${p.id}">← Back to selected work</a><a class="next-project-link" href="work/${next.id}/"><img src="${preview.src}" alt="" width="${preview.width}" height="${preview.height}" loading="lazy"><span class="related-copy"><span class="eyebrow">Related work</span><strong>${next.title}</strong><span class="next-project-subtitle">${connection}</span></span><span class="next-project-arrow" aria-hidden="true">↗</span></a></nav>
   </article>`.replace(/^[ \t]+$/gm, '');
 }
 
