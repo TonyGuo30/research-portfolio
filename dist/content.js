@@ -122,7 +122,7 @@ export const projects = [
     evidence: 'Table 1 reports the percentage of queries for which the model followed an embedded instruction. Each content type receives equal weight in the average.',
     questionNext: 'How can an agent use retrieved evidence without treating that evidence as authority?',
     evaluation: 'A useful extension would connect pipeline-level defenses with interfaces that help people inspect attribution and understand when a source has influenced an answer. This is a prospective research direction.',
-    links: [{label:'Read paper',url:'https://doi.org/10.1145/3774904.3792853'},{label:'Results in Table 1',url:'https://arxiv.org/html/2601.10923v2#S5'}],
+    links: [{label:'Read paper',url:'https://dl.acm.org/doi/abs/10.1145/3774904.3792853'},{label:'Results in Table 1',url:'https://arxiv.org/html/2601.10923v2#S5'}],
     caption: 'Conceptual evaluation pipeline based on the paper; no benchmark results are depicted.',
     source: 'Title, authors, venue, and method: arXiv 2601.10923 and the related ACM DOI.'
   },
@@ -157,7 +157,7 @@ export const publications = [
   {title:'From Prediction to Execution',subtitle:'A Stage-Aware Evaluation of LLM-Assisted Formalization in Predictive HCI',authors:'First author · Tony (Haoze) Guo',venue:'In submission to CHI 2027',caseId:'prediction-to-execution'},
   {title:'EnactiveCanvas',subtitle:'Spatial–Cognitive Mappings for Ill-Defined Design with AI: A Design Space and Its Instantiation in EnactiveCanvas',authors:'Contribution · System design, frontend & backend',venue:'In submission to CHI 2027',caseId:'enactivecanvas'},
   {title:'ConsentDiff at Scale',subtitle:'Longitudinal Audits of Web Privacy Policy Changes and UI Frictions',authors:'Sole author · Haoze Guo',venue:'CHI EA 2026',url:'https://doi.org/10.1145/3772363.3798570'},
-  {title:'Hidden-in-Plain-Text',subtitle:'A Benchmark for Social-Web Indirect Prompt Injection in RAG',authors:'Haoze Guo (first author) and Ziqi Wei',venue:'WWW 2026',url:'https://doi.org/10.1145/3774904.3792853'},
+  {title:'Hidden-in-Plain-Text',subtitle:'A Benchmark for Social-Web Indirect Prompt Injection in RAG',authors:'Haoze Guo (first author) and Ziqi Wei',venue:'WWW 2026',url:'https://dl.acm.org/doi/abs/10.1145/3774904.3792853'},
   {title:'VIRT-LAB',subtitle:'An AI-Powered System for Flexible, Customizable, and Large-scale Team Simulations',authors:'Mohammed Almutairi, Charles Chiang, Haoze Guo, et al.',venue:'UIST Adjunct 2025',url:'https://doi.org/10.1145/3746058.3758994'},
   {title:'Enabling User-Created Multi-Agent Simulations',subtitle:'Interactive and Customizable 2D Environments to Study Team Dynamics with LLM Agents',authors:'Mohammed Almutairi, Charles Chiang, Haoze Guo, et al.',venue:'NeurIPS SEA Workshop 2025',url:'https://openreview.net/forum?id=BX1BnepTZO'},
   {title:'Simulating Teams with LLM Agents',subtitle:'Interactive 2D Environments for Studying Human-AI Dynamics',authors:'Mohammed Almutairi, Charles Chiang, Haoze Guo, et al.',venue:'Preprint · In submission',url:'https://arxiv.org/abs/2510.08242'}
