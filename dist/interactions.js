@@ -86,7 +86,7 @@ function initializeViewer() {
     trigger = link;
     let label = project.image ? 'Figure 1' : 'Conceptual teaser';
     if (supplemental) {
-      label = supplemental.section === 'walkthrough' ? `Demo · ${supplemental.time} · ${supplemental.title}` : `Figure ${supplemental.number}: ${supplemental.title}`;
+      label = supplemental.section === 'walkthrough' ? `Demo · ${supplemental.title}` : `Figure ${supplemental.number}: ${supplemental.title}`;
     }
     dialog.querySelector('#viewer-title').textContent = `${project.title} · ${label}`;
     dialog.querySelector('.viewer-caption').textContent = supplemental ? `${supplemental.source} · ${supplemental.caption}` : media.caption || project.caption;

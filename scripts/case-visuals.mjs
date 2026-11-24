@@ -44,14 +44,21 @@ export function demoWalkthrough(p) {
     <h2 id="walkthrough-title">From a PDF highlight to the next reply</h2>
     <fieldset class="demo-frames"><legend class="visually-hidden">Choose a moment in the recorded session</legend>
       ${frames.map((f,i)=>`<input class="demo-selector" type="radio" name="demo-frame" id="pick-${f.id}" aria-controls="frame-${f.id}" ${i===0?'checked':''}>
-        <label for="pick-${f.id}" style="--step:${i+1}"><span>${f.time}</span> ${f.title}</label>
+        <label for="pick-${f.id}" style="--step:${i+1}">${f.title}</label>
         <figure id="frame-${f.id}" class="demo-frame">
-          <a href="${f.src}" data-project="${p.id}" data-figure="${f.id}" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand demo screenshot at ${f.time}">
+          <a href="${f.src}" data-project="${p.id}" data-figure="${f.id}" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand ${f.title} screenshot">
             <img src="${f.src}" width="${f.width}" height="${f.height}" loading="lazy" alt="${f.alt}"><span class="figure-zoom">Expand screenshot ↗</span>
           </a><figcaption>${f.caption}</figcaption>
         </figure>`).join('')}
     </fieldset>
     <p class="demo-decision"><strong>My design decision</strong> I kept a review step before drafting so the researcher could change which papers the agent would use.</p>
+    <section id="demo-video" class="demo-video" aria-labelledby="demo-video-title">
+      <h3 id="demo-video-title">Full Parallax demo</h3>
+      <video controls playsinline preload="none" poster="assets/parallax-video-poster.jpg" width="1920" height="1080" aria-labelledby="demo-video-title">
+        <source src="assets/parallax-demo.mp4" type="video/mp4">
+        <a href="assets/parallax-demo.mp4">Open the demo video</a>
+      </video>
+    </section>
   </section>`;
 }
 

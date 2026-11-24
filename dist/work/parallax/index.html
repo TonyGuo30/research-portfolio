@@ -8,8 +8,8 @@
   <title>Parallax — Tony Guo’s Research Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23626c45'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-size='23' fill='%23f6f5f0'%3ET%3C/text%3E%3C/svg%3E">
   <base href="../../">
-  <link rel="stylesheet" href="styles.css?v=20261123-demo">
-  <script type="module" src="app.js?v=20261123-demo"></script>
+  <link rel="stylesheet" href="styles.css?v=20261123-video">
+  <script type="module" src="app.js?v=20261123-video"></script>
 </head>
 <body>
   <a class="skip-link" href="work/parallax/#main">Skip to content</a>
@@ -36,26 +36,33 @@
     <h2 id="walkthrough-title">From a PDF highlight to the next reply</h2>
     <fieldset class="demo-frames"><legend class="visually-hidden">Choose a moment in the recorded session</legend>
       <input class="demo-selector" type="radio" name="demo-frame" id="pick-demo-highlight" aria-controls="frame-demo-highlight" checked>
-        <label for="pick-demo-highlight" style="--step:1"><span>04:55</span> Highlight</label>
+        <label for="pick-demo-highlight" style="--step:1">Highlight</label>
         <figure id="frame-demo-highlight" class="demo-frame">
-          <a href="assets/parallax-demo-highlight.webp" data-project="parallax" data-figure="demo-highlight" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand demo screenshot at 04:55">
+          <a href="assets/parallax-demo-highlight.webp" data-project="parallax" data-figure="demo-highlight" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand Highlight screenshot">
             <img src="assets/parallax-demo-highlight.webp" width="724" height="466" loading="lazy" alt="A yellow highlight covers a chart caption on page 2 in Zotero, with a comment being entered below it."><span class="figure-zoom">Expand screenshot ↗</span>
           </a><figcaption>In Zotero, the researcher highlights a caption about growth in human–AI research and begins a note on the passage.</figcaption>
         </figure><input class="demo-selector" type="radio" name="demo-frame" id="pick-demo-checkpoint" aria-controls="frame-demo-checkpoint" >
-        <label for="pick-demo-checkpoint" style="--step:2"><span>05:05</span> Read back</label>
+        <label for="pick-demo-checkpoint" style="--step:2">Read back</label>
         <figure id="frame-demo-checkpoint" class="demo-frame">
-          <a href="assets/parallax-demo-checkpoint.webp" data-project="parallax" data-figure="demo-checkpoint" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand demo screenshot at 05:05">
+          <a href="assets/parallax-demo-checkpoint.webp" data-project="parallax" data-figure="demo-checkpoint" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand Read back screenshot">
             <img src="assets/parallax-demo-checkpoint.webp" width="844" height="319" loading="lazy" alt="The Annotation Checkpoint lists the survey as P004 with seven highlights on pages 1, 2, 3, and 7."><span class="figure-zoom">Expand screenshot ↗</span>
           </a><figcaption>Back in Parallax, the survey appears as P004 with seven highlights, including evidence from page 2.</figcaption>
         </figure><input class="demo-selector" type="radio" name="demo-frame" id="pick-demo-reply" aria-controls="frame-demo-reply" >
-        <label for="pick-demo-reply" style="--step:3"><span>05:10</span> Respond</label>
+        <label for="pick-demo-reply" style="--step:3">Respond</label>
         <figure id="frame-demo-reply" class="demo-frame">
-          <a href="assets/parallax-demo-reply.webp" data-project="parallax" data-figure="demo-reply" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand demo screenshot at 05:10">
+          <a href="assets/parallax-demo-reply.webp" data-project="parallax" data-figure="demo-reply" class="paper-figure-link demo-image" target="_blank" rel="noopener noreferrer" aria-label="Expand Respond screenshot">
             <img src="assets/parallax-demo-reply.webp" width="844" height="219" loading="lazy" alt="The researcher asks what to do next. The reply recommends synthesis because six selected papers have annotations, and asks for an evidence and outline review."><span class="figure-zoom">Expand screenshot ↗</span>
           </a><figcaption>Asked what to do next, Parallax recommends reviewing the six annotated papers and confirming the outline before drafting.</figcaption>
         </figure>
     </fieldset>
     <p class="demo-decision"><strong>My design decision</strong> I kept a review step before drafting so the researcher could change which papers the agent would use.</p>
+    <section id="demo-video" class="demo-video" aria-labelledby="demo-video-title">
+      <h3 id="demo-video-title">Full Parallax demo</h3>
+      <video controls playsinline preload="none" poster="assets/parallax-video-poster.jpg" width="1920" height="1080" aria-labelledby="demo-video-title">
+        <source src="assets/parallax-demo.mp4" type="video/mp4">
+        <a href="assets/parallax-demo.mp4">Open the demo video</a>
+      </video>
+    </section>
   </section>
     <section class="artifact-viewer" aria-label="Explore the figure"><div class="artifact-paper">
     <div class="artifact-topline"><span>MANUSCRIPT · FIGURE 1</span><a class="paper-figure-link artifact-expand" data-project="parallax" href="assets/parallax-overview.png" target="_blank" rel="noopener noreferrer">Expand figure ↗</a></div>
